@@ -27,18 +27,24 @@ const Appbar = ({
           <RaisedButton
             style={{ margin: '0px 12px 0px 0px' }}
             label={currentPath === '/' ? 'Dashboard' : 'Home'}
-            icon={currentPath === '/' ? <DashboardIcon size={18} /> : <HomeIcon size={18} />}
+            icon={
+              currentPath === '/'
+                ? <DashboardIcon size={18} color={'#F57F17'} />
+                : <HomeIcon size={18} color={'#0288D1'} />
+            }
           />
         </NavLink>
       : undefined}
-    {adminUser ? <RaisedButton label="Repair" icon={<RepairNowIcon size={18} />} /> : undefined}
+    {adminUser
+      ? <RaisedButton label="Repair" icon={<RepairNowIcon size={18} color={'#6D4C41'} />} />
+      : undefined}
     <Spacer />
     {token === undefined
       ? <RaisedButton
           onClick={() => dispatchShowModal('Signup', 'SIGNUP', dispatchSignup)}
           style={{ margin: '0px 12px 0px 0px' }}
           label="Sign Up"
-          icon={<SignupIcon />}
+          icon={<SignupIcon size={18} color={'#7B1FA2'} />}
         />
       : undefined}
     <RaisedButton
@@ -48,7 +54,11 @@ const Appbar = ({
           : dispatchLogout
       }
       label={token === undefined ? 'Login' : 'Logout'}
-      icon={token === undefined ? <LoginIcon size={18} /> : <LogoutIcon size={18} />}
+      icon={
+        token === undefined
+          ? <LoginIcon size={18} color={'#388E3C'} />
+          : <LogoutIcon size={18} color={'#D32F2F'} />
+      }
     />
   </Container>
 );

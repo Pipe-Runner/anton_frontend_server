@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import AppShell from './components/AppShell';
 import { Route, Switch } from 'react-router-dom';
 import Home from './scenes/Home';
+import Booking from './scenes/Booking';
 import Inventory from './scenes/Inventory';
 import Transaction from './scenes/Transaction';
 import Employee from './scenes/Employee';
@@ -21,6 +22,7 @@ const App = () => (
         <div>
           <Switch>
             <Route exact path="/" render={() => <AppShell><Home /></AppShell>} />
+            <Route exact path="/booking" render={() => <AppShell><Booking /></AppShell>} />
             <Route path="/inventory" render={() => <AppShell><Inventory /></AppShell>} />
             <Route path="/transaction" render={() => <AppShell><Transaction /></AppShell>} />
             <Route path="/employee" render={() => <AppShell><Employee /></AppShell>} />

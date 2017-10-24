@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
   },
   dispatchLogin: (username, password, contactNumber, adminUser) => {
     dispatch(login(username, password, contactNumber, adminUser));
-    dispatch(loginSuccessful('Aakash', '123', 'admin'));
+    dispatch(loginSuccessful('Aakash', '123', false));
     dispatch(hideModal());
   },
   dispatchSignup: (username, password, contactNumber, adminUser, adminToken) => {

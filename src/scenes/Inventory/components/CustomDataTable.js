@@ -9,7 +9,7 @@ import {
 } from 'material-ui/Table';
 
 const CustomDataTabel = ({ tableData }) => (
-  <Table height="700px" fixedHeader selectable multiSelectable>
+  <Table height="670px" fixedHeader selectable multiSelectable>
     <TableHeader displaySelectAll adjustForCheckbox enableSelectAll>
       <TableRow>
         <TableHeaderColumn colSpan="8" style={{ textAlign: 'center' }}>

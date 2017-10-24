@@ -31,9 +31,13 @@ const AppShell = ({
       currentPath={location.pathname}
     />
     <ContentWrapper>
-      {location.pathname !== '/' ? <NavBar currentPath={location.pathname} /> : undefined}
+      {location.pathname !== '/' && location.pathname !== '/booking'
+        ? <NavBar currentPath={location.pathname} />
+        : undefined}
       <MainContentWrapper>
-        {username === undefined && token === undefined ? <Redirect to="/" /> : undefined}
+        {username === undefined && token === undefined && location.pathname !== '/'
+          ? <Redirect to="/" />
+          : undefined}
         {children}
       </MainContentWrapper>
     </ContentWrapper>

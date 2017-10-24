@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../utils/theme';
 
 export const Container = styled.div`
   height: 100vh;
@@ -15,7 +16,7 @@ export const ContentWrapper = styled.div`
 
 export const MainContentWrapper = styled.div`
   flex: 1;
+  background-color: ${theme.primary3Color};
   height: calc( 100vh - 72px );
-  padding: 24px 24px 0px 24px;
   overflow-y: auto;
 `;

@@ -10,7 +10,7 @@ import SalaryIcon from 'react-icons/lib/go/repo';
 import HistoryIcon from 'react-icons/lib/md/history';
 import FlatButton from 'material-ui/FlatButton';
 
-const NavBar = () => (
+const NavBar = ({ currentPath }) => (
   <Container>
     <GifContainer src={AnimatedLogo} />
     <MenuItemsContainer>
@@ -21,6 +21,7 @@ const NavBar = () => (
           fullWidth
           label="Inventory"
           icon={<InventoryIcon size={24} />}
+          backgroundColor={currentPath === '/inventory' ? '#FFCDD2' : undefined}
         />
       </NavLink>
       <Divider />
@@ -31,6 +32,7 @@ const NavBar = () => (
           fullWidth
           label="Transaction"
           icon={<TransactionIcon size={24} />}
+          backgroundColor={currentPath === '/transaction' ? '#FFCDD2' : undefined}
         />
       </NavLink>
       <Divider />
@@ -41,6 +43,7 @@ const NavBar = () => (
           fullWidth
           label="Employees"
           icon={<EmpoyeesIcon size={24} />}
+          backgroundColor={currentPath === '/employee' ? '#FFCDD2' : undefined}
         />
       </NavLink>
       <Divider />
@@ -51,6 +54,7 @@ const NavBar = () => (
           fullWidth
           label="Salary"
           icon={<SalaryIcon size={24} />}
+          backgroundColor={currentPath === '/salary' ? '#FFCDD2' : undefined}
         />
       </NavLink>
       <Divider />
@@ -61,6 +65,7 @@ const NavBar = () => (
           fullWidth
           label="History"
           icon={<HistoryIcon size={24} />}
+          backgroundColor={currentPath === '/history' ? '#FFCDD2' : undefined}
         />
       </NavLink>
       <Divider />
