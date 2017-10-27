@@ -17,25 +17,25 @@ const CustomDataTabel = ({ tableData }) => (
         </TableHeaderColumn>
       </TableRow>
       <TableRow>
-        <TableHeaderColumn>Parts ID</TableHeaderColumn>
-        <TableHeaderColumn>Part Type</TableHeaderColumn>
-        <TableHeaderColumn>Model Number</TableHeaderColumn>
-        <TableHeaderColumn>Supplier Name</TableHeaderColumn>
-        <TableHeaderColumn>Vehicle</TableHeaderColumn>
-        <TableHeaderColumn>Price</TableHeaderColumn>
-        <TableHeaderColumn>Stored At</TableHeaderColumn>
+        <TableHeaderColumn>Order ID</TableHeaderColumn>
+        <TableHeaderColumn>Employee Name</TableHeaderColumn>
+        <TableHeaderColumn>Employee ID</TableHeaderColumn>
+        <TableHeaderColumn>Name</TableHeaderColumn>
+        <TableHeaderColumn>ContactNumber</TableHeaderColumn>
+        <TableHeaderColumn>Transaction ID</TableHeaderColumn>
+        <TableHeaderColumn>Amount</TableHeaderColumn>
       </TableRow>
     </TableHeader>
     <TableBody displayRowCheckbox deselectOnClickaway showRowHover>
       {tableData.map((row, index) => (
         <TableRow key={index}>
           <TableRowColumn>{row.id}</TableRowColumn>
-          <TableRowColumn>{row.partType}</TableRowColumn>
-          <TableRowColumn>{row.modelNumber}</TableRowColumn>
-          <TableRowColumn>{row.supplierName}</TableRowColumn>
-          <TableRowColumn>{row.vehicleName}</TableRowColumn>
-          <TableRowColumn>{row.price}</TableRowColumn>
-          <TableRowColumn>{row.storedAt}</TableRowColumn>
+          <TableRowColumn>{row.name}</TableRowColumn>
+          <TableRowColumn>{row.employeeId}</TableRowColumn>
+          <TableRowColumn>{row.username}</TableRowColumn>
+          <TableRowColumn>{row.contactNumber}</TableRowColumn>
+          <TableRowColumn>{row.transactionId}</TableRowColumn>
+          <TableRowColumn>{row.amount}</TableRowColumn>
         </TableRow>
       ))}
     </TableBody>

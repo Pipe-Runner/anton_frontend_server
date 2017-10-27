@@ -1,8 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
-  VideoContainer,
-  Video,
+  GifContainer,
   Container,
   FabContainer,
   OrdersContainer,
@@ -19,10 +18,9 @@ import { RubberBand, Swing } from 'animate-css-styled-components';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import RepairIcon from 'react-icons/lib/go/tools';
 import CompanyIcon from 'react-icons/lib/md/build';
-import backgroundVideo from '../../images/background_vid.mp4';
 
-const Home = ({ orders = [], token, username, adminUser }) =>
-  token !== undefined && username !== undefined && !adminUser ? (
+const Home = ({ orders = [], username, isAdmin }) =>
+  username !== undefined && !isAdmin ? (
     <Container>
       <OrdersContainer>
         <OrderWrapper>
@@ -53,13 +51,10 @@ const Home = ({ orders = [], token, username, adminUser }) =>
       </FabContainer>
     </Container>
   ) : (
-    <VideoContainer>
-      <Video style={{ height: 'auto', width: '100%', bottom: '0px' }} loop muted autoPlay>
-        <source src={backgroundVideo} type="video/mp4" />
-      </Video>
+    <GifContainer>
       <PromotionContainer>
         <RubberBand iterationCount="2" duration="1.5s" delay="1.5s">
-          <TitleWrapper>"Athithi Devo Bhava"</TitleWrapper>
+          <TitleWrapper>"CAR REPAIRS ++"</TitleWrapper>
         </RubberBand>
         <Swing iterationCount="infinite" delay="4.5s">
           <Logo>
@@ -67,7 +62,7 @@ const Home = ({ orders = [], token, username, adminUser }) =>
           </Logo>
         </Swing>
       </PromotionContainer>
-    </VideoContainer>
+    </GifContainer>
   );
 
 export default Home;

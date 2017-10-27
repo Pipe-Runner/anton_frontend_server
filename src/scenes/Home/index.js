@@ -4,8 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => ({
   username: state.appshell.username,
-  adminUser: state.appshell.adminUser,
-  token: state.appshell.token,
+  isAdmin: state.appshell.isAdmin,
 });
 
 export default withRouter(connect(mapStateToProps, undefined)(Home));

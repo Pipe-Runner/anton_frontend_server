@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../utils/theme';
 import homebackground from '../../images/home.jpg';
+import promotionbackground from '../../images/background.gif';
 import { reminderbackground } from '../../images/reminder.jpg';
 
 export const Container = styled.div`
@@ -124,20 +125,14 @@ export const MomentData = styled.div`
   height: 36px;
 `;
 
-export const VideoContainer = styled.div`
+export const GifContainer = styled.div`
   position: relative;
   display: flex;
   padding: 16px 16px 0px 16px;
   height: 100%;
   width: 100%;
   overflow: hidden;
-`;
-
-export const Video = styled.video`
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  bottom: 0px;
-  right: 0px;
-  width: 120%;
+  background-image: url(${promotionbackground});
+  background-size: cover;
+  background-position: 50% 50%;
 `;

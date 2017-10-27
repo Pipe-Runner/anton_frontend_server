@@ -20,7 +20,7 @@ const CustomDataTabel = ({ tableData }) => (
         <TableHeaderColumn>Parts ID</TableHeaderColumn>
         <TableHeaderColumn>Part Type</TableHeaderColumn>
         <TableHeaderColumn>Model Number</TableHeaderColumn>
-        <TableHeaderColumn>Supplier Name</TableHeaderColumn>
+        <TableHeaderColumn>Supplier ID</TableHeaderColumn>
         <TableHeaderColumn>Vehicle</TableHeaderColumn>
         <TableHeaderColumn>Price</TableHeaderColumn>
         <TableHeaderColumn>Stored At</TableHeaderColumn>
@@ -32,7 +32,7 @@ const CustomDataTabel = ({ tableData }) => (
           <TableRowColumn>{row.id}</TableRowColumn>
           <TableRowColumn>{row.partType}</TableRowColumn>
           <TableRowColumn>{row.modelNumber}</TableRowColumn>
-          <TableRowColumn>{row.supplierName}</TableRowColumn>
+          <TableRowColumn>{row.supplierId}</TableRowColumn>
           <TableRowColumn>{row.vehicleName}</TableRowColumn>
           <TableRowColumn>{row.price}</TableRowColumn>
           <TableRowColumn>{row.storedAt}</TableRowColumn>
