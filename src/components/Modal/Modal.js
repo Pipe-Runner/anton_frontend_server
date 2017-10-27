@@ -7,15 +7,35 @@ import { LoginForm, SignupForm } from './components/InputForms';
 class Modal extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      username: '',
+      password: '',
+      contactNumber: '',
+      adminToken: '',
+      isAdmin: false,
+    };
   }
 
-  actionButtonRenderer = (modalTitle, modalType, modalFunction, data) => {
+  actionButtonRenderer = (modalTitle, modalType, modalFunction, data, reset) => {
     switch (modalType) {
       case 'LOGIN':
-        return <LoginButton modalTitle={modalTitle} modalFunction={modalFunction} data={data} />;
+        return (
+          <LoginButton
+            modalTitle={modalTitle}
+            modalFunction={modalFunction}
+            data={data}
+            reset={reset}
+          />
+        );
       case 'SIGNUP':
-        return <SignupButton modalTitle={modalTitle} modalFunction={modalFunction} data={data} />;
+        return (
+          <SignupButton
+            modalTitle={modalTitle}
+            modalFunction={modalFunction}
+            data={data}
+            reset={reset}
+          />
+        );
       default: {
         return undefined;
       }
@@ -25,27 +45,26 @@ class Modal extends Component {
   adminToggle = (event, isInputChecked) => {
     this.setState(state => ({
       ...state,
-      adminLogin: isInputChecked,
+      isAdmin: isInputChecked,
     }));
   };
 
-  onTextFieldChange = fieldName => (event, newValue) =>
+  reset = () => {
+    this.setState({
+      username: '',
+      password: '',
+      contactNumber: '',
+      adminToken: '',
+      isAdmin: false,
+    });
+  };
+
+  onTextFieldChange = fieldName => (event, newValue) => {
     this.setState(state => ({ ...state, [fieldName]: newValue }));
+  };
 
   fieldsRenderer = modalType => {
     switch (modalType) {
-      case 'LOGIN': {
-        return (
-          <LoginForm
-            username={this.state.username}
-            password={this.state.password}
-            contactNumber={this.state.contactNumber}
-            adminLogin={this.adminLogin}
-            onTextFieldChange={this.onTextFieldChange}
-            adminToggle={this.adminToggle}
-          />
-        );
-      }
       case 'SIGNUP': {
         return (
           <SignupForm
@@ -54,6 +73,18 @@ class Modal extends Component {
             contactNumber={this.contactNumber}
             adminToken={this.state.adminToken}
             onTextFieldChange={this.onTextFieldChange}
+          />
+        );
+      }
+      case 'LOGIN': {
+        return (
+          <LoginForm
+            username={this.state.username}
+            password={this.state.password}
+            contactNumber={this.state.contactNumber}
+            isAdmin={this.state.isAdmin}
+            onTextFieldChange={this.onTextFieldChange}
+            adminToggle={this.adminToggle}
           />
         );
       }
@@ -71,7 +102,7 @@ class Modal extends Component {
         title={modalTitle || 'random'}
         actions={[
           <FlatButton label="Cancel" primary={true} onClick={dispatchHideModal} />,
-          this.actionButtonRenderer(modalTitle, modalType, modalFunction, this.state),
+          this.actionButtonRenderer(modalTitle, modalType, modalFunction, this.state, this.reset),
         ]}
         modal={true}
         open={modalShown || false}

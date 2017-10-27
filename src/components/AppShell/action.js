@@ -28,14 +28,13 @@ export const hideError = () => ({
   type: HIDE_ERROR,
 });
 
-export const login = (username, password, contactNumber, adminUser) => ({
+export const login = () => ({
   type: LOGIN,
-  payload: { username, password, contactNumber, adminUser },
 });
 
-export const loginSuccessful = (username, token, adminUser) => ({
+export const loginSuccessful = (username, isAdmin) => ({
   type: LOGIN_SUCCESSFUL,
-  payload: { username, token, adminUser },
+  payload: { username, isAdmin },
 });
 
 export const loginFailed = () => ({
@@ -53,7 +52,6 @@ export const signup = (username, password, contactNumber, adminUser, adminToken)
 
 export const signupSuccessful = (username, token, adminUser, contactNumber) => ({
   type: SIGNUP_SUCCESSFUL,
-  payload: { username, token, adminUser, contactNumber },
 });
 
 export const signupFailed = () => ({

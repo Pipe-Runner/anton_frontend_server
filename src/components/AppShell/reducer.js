@@ -48,8 +48,7 @@ const reducer = (state = defaultState, action) => {
         loginDataLoading: false,
         signupDataLoading: false,
         username: action.payload.username,
-        token: action.payload.token,
-        adminUser: action.payload.adminUser,
+        isAdmin: action.payload.isAdmin,
       };
 
     case LOGIN_FAILED:
@@ -62,8 +61,7 @@ const reducer = (state = defaultState, action) => {
       return {
         ...state,
         username: undefined,
-        token: undefined,
-        adminUser: undefined,
+        isAdmin: undefined,
       };
 
     case SIGNUP:
@@ -77,10 +75,6 @@ const reducer = (state = defaultState, action) => {
         ...state,
         signupDataLoading: false,
         loginDataLoading: false,
-        username: action.payload.username,
-        token: action.payload.token,
-        adminUser: action.payload.adminUser,
-        contactNumber: action.payload.contactNumber,
       };
 
     case SIGNUP_FAILED:

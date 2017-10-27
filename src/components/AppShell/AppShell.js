@@ -6,9 +6,8 @@ import { Container, ContentWrapper, MainContentWrapper } from './styles';
 
 const AppShell = ({
   children,
-  token,
   username,
-  adminUser,
+  isAdmin,
   loginDataLoading,
   signupDataLoading,
   dispatchShowModal,
@@ -19,8 +18,7 @@ const AppShell = ({
 }) => (
   <Container>
     <Appbar
-      token={token}
-      adminUser={adminUser}
+      isAdmin={isAdmin}
       username={username}
       loginDataLoading={loginDataLoading}
       signupDataLoading={signupDataLoading}
@@ -31,13 +29,13 @@ const AppShell = ({
       currentPath={location.pathname}
     />
     <ContentWrapper>
-      {location.pathname !== '/' && location.pathname !== '/booking'
-        ? <NavBar currentPath={location.pathname} />
-        : undefined}
+      {location.pathname !== '/' && location.pathname !== '/booking' ? (
+        <NavBar currentPath={location.pathname} />
+      ) : (
+        undefined
+      )}
       <MainContentWrapper>
-        {username === undefined && token === undefined && location.pathname !== '/'
-          ? <Redirect to="/" />
-          : undefined}
+        {username === undefined && location.pathname !== '/' ? <Redirect to="/" /> : undefined}
         {children}
       </MainContentWrapper>
     </ContentWrapper>
