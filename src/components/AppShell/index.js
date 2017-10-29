@@ -11,6 +11,8 @@ import {
   signupSuccessful,
   signupFailed,
   logout,
+  openSnackBar,
+  resetSnackBar,
 } from './action';
 import { signupApi, loginApi } from './api.AppShell';
 
@@ -19,15 +21,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatchShowModal: (title, type, actionFunction) => {
-    dispatch(showModal(title, type, actionFunction));
-  },
-  dispatchLogout: () => {
-    dispatch(logout());
-  },
-  dispatchLogin: (username, password, contactNumber, isAdmin) => {
+  dispatchLogin: (emailId, password, contactNumber) => {
     dispatch(login());
-    const data = { username, password, contactNumber, isAdmin };
+    const data = { emailId, password, contactNumber };
+    console.log(data);
     loginApi(data)
       .then(response => {
         if (response.ok === true) {
@@ -36,24 +33,32 @@ const mapDispatchToProps = dispatch => ({
         throw new Error('Error in network');
       })
       .then(data => {
+        console.log(data);
         if (data.code === '200' && data.error === 'none') {
-          console.log('successful login');
+          dispatch(openSnackBar(`Wecome ${data.fullName}!`));
           dispatch(hideModal());
-          dispatch(loginSuccessful(data.username, data.isAdmin));
+          dispatch(
+            loginSuccessful(
+              data.fullName,
+              data.emailId,
+              data.userId,
+              data.contactNumber,
+              data.userLevel
+            )
+          );
         } else {
-          console.log(data.error);
+          dispatch(openSnackBar(data.error));
           dispatch(loginFailed());
         }
+      })
+      .catch(error => {
+        dispatch(openSnackBar('Error in fetch operation'));
+        dispatch(loginFailed());
       });
-
-    // remove when deployed
-    dispatch(loginSuccessful('aakash', true));
-    dispatch(hideModal());
   },
-  dispatchSignup: (username, password, contactNumber, adminToken) => {
+  dispatchSignup: (fullName, emailId, password, contactNumber) => {
     dispatch(signup());
-    const data = { username, passwordHash: password, contactNumber, adminToken };
-    console.log(data);
+    const data = { fullName, emailId, password, contactNumber };
     signupApi(data)
       .then(response => {
         if (response.ok === true) {
@@ -63,20 +68,37 @@ const mapDispatchToProps = dispatch => ({
       })
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
-          console.log('successful Signup');
+          dispatch(openSnackBar('Signup Successful!'));
           dispatch(hideModal());
           dispatch(signupSuccessful());
-          console.log(adminToken);
-          dispatch(loginSuccessful(username, adminToken !== ''));
+          dispatch(
+            loginSuccessful(
+              data.fullName,
+              data.emailId,
+              data.userId,
+              data.contactNumber,
+              data.userLevel
+            )
+          );
         } else {
-          console.log(data.error);
+          dispatch(openSnackBar(data.error));
           dispatch(signupFailed());
         }
       })
       .catch(error => {
-        console.log('Error in fetch operation');
+        dispatch(openSnackBar('Error in fetch operation'));
         dispatch(signupFailed());
       });
+  },
+  dispatchShowModal: (title, type, actionFunction) => {
+    dispatch(showModal(title, type, actionFunction));
+  },
+  dispatchLogout: () => {
+    dispatch(openSnackBar('Logout Successful!'));
+    dispatch(logout());
+  },
+  dispatchResetSnackBar: () => {
+    dispatch(resetSnackBar());
   },
 });
 

@@ -1,5 +1,7 @@
+import api from '../../api';
+
 export const fetchTransactionApi = data =>
-  fetch('http://127.0.0.1:4000/transaction/fetchtransaction', {
+  fetch(`${api}/transaction/fetchall`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -8,7 +10,7 @@ export const fetchTransactionApi = data =>
   });
 
 export const searchTransactionApi = data =>
-  fetch('http://127.0.0.1:4000/transaction/searchtransaction/', {
+  fetch('http://127.0.0.1:4000/transactions/searchtransactions/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

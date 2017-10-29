@@ -8,55 +8,115 @@ class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      fullName: '',
+      fullNameError: undefined,
+      emailId: '',
+      emailIdError: undefined,
       password: '',
+      passwordError: undefined,
       contactNumber: '',
-      adminToken: '',
-      isAdmin: false,
+      contactNumberError: undefined,
     };
   }
 
-  actionButtonRenderer = (modalTitle, modalType, modalFunction, data, reset) => {
-    switch (modalType) {
-      case 'LOGIN':
-        return (
-          <LoginButton
-            modalTitle={modalTitle}
-            modalFunction={modalFunction}
-            data={data}
-            reset={reset}
-          />
-        );
-      case 'SIGNUP':
-        return (
-          <SignupButton
-            modalTitle={modalTitle}
-            modalFunction={modalFunction}
-            data={data}
-            reset={reset}
-          />
-        );
-      default: {
-        return undefined;
-      }
-    }
-  };
+  checkAndSubmit = type => {
+    let isDirty = false;
+    let fullNameError = undefined;
+    let emailIdError = undefined;
+    let passwordError = undefined;
+    let contactNumberError = undefined;
 
-  adminToggle = (event, isInputChecked) => {
-    this.setState(state => ({
-      ...state,
-      isAdmin: isInputChecked,
-    }));
+    switch (type) {
+      case 'SIGNUP':
+        return () => {
+          if (this.state.fullName === '') {
+            fullNameError = 'Name cannot be empty';
+            isDirty = true;
+          }
+          if (this.state.password === '') {
+            passwordError = 'Paswword cannot be empty';
+            isDirty = true;
+          }
+          if (this.state.contactNumber === '') {
+            contactNumberError = 'Contact Number cannot be empty';
+            isDirty = true;
+          }
+          if (this.state.emailId === '') {
+            emailIdError = 'Email ID cannot be empty';
+            isDirty = true;
+          }
+          if (!isDirty) {
+            this.props.modalFunction(
+              this.state.fullName,
+              this.state.emailId,
+              this.state.password,
+              this.state.contactNumber
+            );
+            this.reset();
+          } else {
+            this.setState({
+              ...this.state,
+              fullNameError,
+              passwordError,
+              emailIdError,
+              contactNumberError,
+            });
+          }
+        };
+        break;
+      case 'LOGIN':
+        return () => {
+          if (this.state.password === '') {
+            passwordError = 'Paswword cannot be empty';
+            isDirty = true;
+          }
+          if (this.state.contactNumber === '') {
+            contactNumberError = 'Contact Number cannot be empty';
+            isDirty = true;
+          }
+          if (this.state.emailId === '') {
+            emailIdError = 'Email ID cannot be empty';
+            isDirty = true;
+          }
+          if (!isDirty) {
+            this.props.modalFunction(
+              this.state.emailId,
+              this.state.password,
+              this.state.contactNumber
+            );
+            this.reset();
+          } else {
+            this.setState({
+              ...this.state,
+              fullNameError,
+              passwordError,
+              emailIdError,
+              contactNumberError,
+            });
+          }
+        };
+        break;
+      default:
+        break;
+    }
   };
 
   reset = () => {
     this.setState({
-      username: '',
+      fullName: '',
+      fullNameError: undefined,
+      emailId: '',
+      emailIdError: undefined,
       password: '',
+      passwordError: undefined,
       contactNumber: '',
-      adminToken: '',
-      isAdmin: false,
+      contactNumberError: undefined,
     });
+  };
+
+  hideAndReset = () => {
+    this.reset();
+    this.props.dispatchHideModal();
   };
 
   onTextFieldChange = fieldName => (event, newValue) => {
@@ -68,10 +128,14 @@ class Modal extends Component {
       case 'SIGNUP': {
         return (
           <SignupForm
-            username={this.state.username}
+            fullName={this.state.fullName}
+            fullNameError={this.state.fullNameError}
+            emailId={this.state.emailId}
+            emailIdError={this.state.emailIdError}
             password={this.state.password}
-            contactNumber={this.contactNumber}
-            adminToken={this.state.adminToken}
+            passwordError={this.state.passwordError}
+            contactNumber={this.state.contactNumber}
+            contactNumberError={this.state.contactNumberError}
             onTextFieldChange={this.onTextFieldChange}
           />
         );
@@ -79,12 +143,13 @@ class Modal extends Component {
       case 'LOGIN': {
         return (
           <LoginForm
-            username={this.state.username}
+            emailId={this.state.emailId}
+            emailIdError={this.state.emailIdError}
             password={this.state.password}
+            passwordError={this.state.passwordError}
             contactNumber={this.state.contactNumber}
-            isAdmin={this.state.isAdmin}
+            contactNumberError={this.state.contactNumberError}
             onTextFieldChange={this.onTextFieldChange}
-            adminToggle={this.adminToggle}
           />
         );
       }
@@ -94,19 +159,47 @@ class Modal extends Component {
     }
   };
 
+  actionButtonRenderer = (modalTitle, modalType, modalFunction, data, reset) => {
+    switch (modalType) {
+      case 'SIGNUP':
+        return (
+          <SignupButton
+            modalTitle={modalTitle}
+            modalFunction={modalFunction}
+            data={data}
+            reset={reset}
+            checkAndSubmit={this.checkAndSubmit}
+          />
+        );
+      case 'LOGIN':
+        return (
+          <LoginButton
+            modalTitle={modalTitle}
+            modalFunction={modalFunction}
+            data={data}
+            reset={reset}
+            checkAndSubmit={this.checkAndSubmit}
+          />
+        );
+      default: {
+        return undefined;
+      }
+    }
+  };
+
   render() {
-    const { modalShown, modalTitle, modalType, modalFunction, dispatchHideModal } = this.props;
+    const { modalShown, modalTitle, modalType } = this.props;
 
     return (
       <Dialog
         title={modalTitle || 'random'}
         actions={[
-          <FlatButton label="Cancel" primary={true} onClick={dispatchHideModal} />,
-          this.actionButtonRenderer(modalTitle, modalType, modalFunction, this.state, this.reset),
+          <FlatButton label="Cancel" primary={true} onClick={this.hideAndReset} />,
+          this.actionButtonRenderer(modalTitle, modalType),
         ]}
         modal={true}
         open={modalShown || false}
-        onRequestClose={dispatchHideModal}
+        onRequestClose={this.hideAndReset}
       >
         {this.fieldsRenderer(modalType)}
       </Dialog>

@@ -15,3 +15,9 @@ export const FormContainer = styled.div`
 export const Spacer = styled.div`flex: 1;`;
 
 export const ButtonContainer = styled.div`align-self: flex-end;`;
+
+export const PaymentInfoWrapper = styled.div`
+  margin: 32px 0px 0px 0px;
+  font-size: 20px;
+  color: #00897b;
+`;

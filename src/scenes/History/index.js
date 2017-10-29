@@ -9,6 +9,7 @@ import {
   searchHistorySuccessful,
   searchHistoryFailed,
 } from './action';
+import { openSnackBar } from '../../components/AppShell/action';
 import { fetchHistoryApi, searchHistoryApi } from './api.History';
 
 const mapStateToProps = state => ({
@@ -27,8 +28,7 @@ const mapDispatchToProps = dispatch => ({
       })
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
-          console.log('successful Data Fetch');
-          console.log(data.history);
+          dispatch(openSnackBar('successful Data Fetch!'));
           dispatch(fetchHistorySuccessful(data.history));
         } else {
           console.log(data.error);
@@ -36,7 +36,7 @@ const mapDispatchToProps = dispatch => ({
         }
       })
       .catch(error => {
-        console.log('Error in fetch operation');
+        dispatch(openSnackBar('Error in fetch operation'));
         dispatch(fetchHistoryFailed());
       });
   },

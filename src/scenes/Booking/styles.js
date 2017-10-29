@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '../../utils/theme';
+import formBackground from '../../images/formbackground.jpg';
 
 export const Container = styled.div`
   padding: 16px 0px 0px 0px;
@@ -7,7 +8,7 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
-  background-color: ${theme.primary3Color};
+  background-image: url(${formBackground});
   padding: 16px 0px 16px 0px;
 `;
 
@@ -20,8 +21,8 @@ export const MainWrapper = styled.div`
   background-color: ${theme.canvasColor};
 
   & > * {
-    margin: 8px;
+    margin: 16px;
   }
 `;
 
-export const ContentWrapper = styled.div``;
+export const ContentWrapper = styled.div`height: 100%;`;

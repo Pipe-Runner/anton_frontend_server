@@ -1,44 +1,66 @@
 import React from 'react';
 import Appbar from './components/Appbar';
 import NavBar from './components/NavBar';
+import Snackbar from 'material-ui/Snackbar';
 import { Redirect } from 'react-router-dom';
 import { Container, ContentWrapper, MainContentWrapper } from './styles';
 
 const AppShell = ({
   children,
-  username,
-  isAdmin,
+  fullName,
+  userId,
+  contactNumber,
+  userLevel,
   loginDataLoading,
   signupDataLoading,
   dispatchShowModal,
   dispatchLogin,
-  dispatchLogout,
   dispatchSignup,
+  dispatchLogout,
   location,
+  isSnackBarOpen,
+  snackBarMessage,
+  dispatchResetSnackBar,
 }) => (
   <Container>
     <Appbar
-      isAdmin={isAdmin}
-      username={username}
+      userLevel={userLevel}
+      fullName={fullName}
+      userId={userId}
+      contactNumber={contactNumber}
       loginDataLoading={loginDataLoading}
       signupDataLoading={signupDataLoading}
       dispatchShowModal={dispatchShowModal}
       dispatchLogin={dispatchLogin}
-      dispatchLogout={dispatchLogout}
       dispatchSignup={dispatchSignup}
+      dispatchLogout={dispatchLogout}
       currentPath={location.pathname}
     />
     <ContentWrapper>
-      {location.pathname !== '/' && location.pathname !== '/booking' ? (
-        <NavBar currentPath={location.pathname} />
+      {userId !== undefined && userLevel >= 1 && location.pathname !== '/' ? (
+        <NavBar userLevel={userLevel} currentPath={location.pathname} />
       ) : (
         undefined
       )}
       <MainContentWrapper>
-        {username === undefined && location.pathname !== '/' ? <Redirect to="/" /> : undefined}
+        {(userId === undefined && location.pathname !== '/') ||
+        (userId === 0 &&
+          location.pathname !== '/' &&
+          location.pathname !== '/booking' &&
+          location.pathname !== '/about') ? (
+          <Redirect to="/" />
+        ) : (
+          undefined
+        )}
         {children}
       </MainContentWrapper>
     </ContentWrapper>
+    <Snackbar
+      open={isSnackBarOpen === undefined ? false : isSnackBarOpen}
+      message={snackBarMessage === undefined ? '' : snackBarMessage}
+      autoHideDuration={4000}
+      onRequestClose={dispatchResetSnackBar}
+    />
   </Container>
 );
 

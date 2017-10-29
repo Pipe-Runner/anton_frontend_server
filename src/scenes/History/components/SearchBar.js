@@ -5,18 +5,10 @@ import FlatButton from 'material-ui/FlatButton';
 import SearchIcon from 'react-icons/lib/md/search';
 import { theme } from '../../../utils/theme';
 
-const searchBar = ({
-  onSearch,
-  onAdd,
-  onChange,
-  selected_vehicleType,
-  selected_partType,
-  selected_manufacturer,
-}) => (
+const searchBar = ({ onSearch, onChange, startDate, endDate }) => (
   <Container>
-    <TextField fullWidth style={{ margin: '8px 0px 0px 0px' }} hintText="Location" />
-    <TextField fullWidth style={{ margin: '8px 0px 0px 0px' }} hintText="Part Type" />
-    <TextField fullWidth style={{ margin: '8px 0px 16px 0px' }} hintText="Supplier ID" />
+    <TextField fullWidth style={{ margin: '8px 0px 0px 0px' }} hintText="Start Date" />
+    <TextField fullWidth style={{ margin: '8px 0px 0px 0px' }} hintText="End Date" />
     <FlatButton
       backgroundColor="#0277BD"
       hoverColor="#01579B"

@@ -7,8 +7,20 @@ import { Container, TableWrapper, Wrapper } from './styles.js';
 class Inventory extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      rowSelection: [],
+      cart: [],
+      filter: {},
+    };
   }
+
+  onRowSelection = selectedElements => {
+    console.log(selectedElements);
+  };
+
+  onAddToCard = () => {};
+
+  onCheckOut = () => {};
 
   componentDidMount() {
     this.props.dispatchFetchInventory();
@@ -21,7 +33,11 @@ class Inventory extends Component {
     return (
       <Container>
         <TableWrapper>
-          {inventoryTableData ? <CustomDataTable tableData={inventoryTableData} /> : undefined}
+          {inventoryTableData ? (
+            <CustomDataTable onRowSelection={this.onRowSelection} tableData={inventoryTableData} />
+          ) : (
+            undefined
+          )}
         </TableWrapper>
         <Wrapper>
           <SearchBar onSearch={() => {}} />

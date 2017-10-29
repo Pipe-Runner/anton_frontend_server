@@ -17,6 +17,6 @@ export const ContentWrapper = styled.div`
 export const MainContentWrapper = styled.div`
   flex: 1;
   background-color: ${theme.primary3Color};
-  height: calc( 100vh - 72px );
+  height: calc(100vh - 52px);
   overflow-y: auto;
 `;

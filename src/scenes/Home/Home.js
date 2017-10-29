@@ -4,47 +4,43 @@ import {
   GifContainer,
   Container,
   FabContainer,
-  OrdersContainer,
   PromotionContainer,
-  OrderWrapper,
-  MomentWrapper,
-  MomentData,
-  IdWrapper,
-  IdData,
   TitleWrapper,
   Logo,
+  SocialMediaContainer,
+  Button,
 } from './styles';
-import { RubberBand, Swing } from 'animate-css-styled-components';
+import { Swing, Jello } from 'animate-css-styled-components';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import FacebookIcon from 'react-icons/lib/fa/facebook-square';
+import TwitterIcon from 'react-icons/lib/fa/twitter-square';
 import RepairIcon from 'react-icons/lib/go/tools';
 import CompanyIcon from 'react-icons/lib/md/build';
+import Order from './components/Order';
+import Service from './components/Service';
+import Notification from './components/Notification';
 
-const Home = ({ orders = [], username, isAdmin }) =>
-  username !== undefined && !isAdmin ? (
+const Home = ({
+  bookingData = [],
+  contactNumber,
+  userId,
+  emailId,
+  userLevel,
+  dispatchGetBooking,
+}) =>
+  userId !== undefined && userLevel < 1 ? (
     <Container>
-      <OrdersContainer>
-        <OrderWrapper>
-          <IdWrapper>
-            <IdData>123D232</IdData>
-          </IdWrapper>
-          <MomentWrapper>
-            <MomentData>23/9/2017</MomentData>
-            <MomentData>10:20 AM</MomentData>
-          </MomentWrapper>
-        </OrderWrapper>
-        <OrderWrapper>
-          <IdWrapper>
-            <IdData>123D232</IdData>
-          </IdWrapper>
-          <MomentWrapper>
-            <MomentData>23/9/2017</MomentData>
-            <MomentData>10:20 AM</MomentData>
-          </MomentWrapper>
-        </OrderWrapper>
-      </OrdersContainer>
+      <Order
+        dispatchGetBooking={dispatchGetBooking}
+        userId={userId}
+        contactNumber={contactNumber}
+        bookingData={bookingData}
+      />
+      <Service />
+      <Notification />
       <FabContainer>
         <NavLink to="/booking">
-          <FloatingActionButton>
+          <FloatingActionButton backgroundColor="#9C27B0">
             <RepairIcon size={24} />
           </FloatingActionButton>
         </NavLink>
@@ -53,15 +49,25 @@ const Home = ({ orders = [], username, isAdmin }) =>
   ) : (
     <GifContainer>
       <PromotionContainer>
-        <RubberBand iterationCount="2" duration="1.5s" delay="1.5s">
-          <TitleWrapper>"CAR REPAIRS ++"</TitleWrapper>
-        </RubberBand>
-        <Swing iterationCount="infinite" delay="4.5s">
+        <TitleWrapper>GUPTA MOTORSHOP</TitleWrapper>
+        <Swing iterationCount="infinite" duration="2.0s" delay="3.5s">
           <Logo>
-            <CompanyIcon size={96} color="#FF9800" />
+            <CompanyIcon size={78} color="#673AB7" />
           </Logo>
         </Swing>
       </PromotionContainer>
+      <SocialMediaContainer>
+        <Jello iterationCount="infinite" delay="1.5s">
+          <Button>
+            <FacebookIcon size={48} color="#1A237E" />
+          </Button>
+        </Jello>
+        <Jello iterationCount="infinite" delay="1.5s">
+          <Button>
+            <TwitterIcon size={48} color="#01579B" />
+          </Button>
+        </Jello>
+      </SocialMediaContainer>
     </GifContainer>
   );
 

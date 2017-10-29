@@ -1,5 +1,7 @@
+import api from '../../api';
+
 export const signupApi = data =>
-  fetch('http://127.0.0.1:4000/customers/signup/', {
+  fetch(`${api}/user/signup/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -9,7 +11,7 @@ export const signupApi = data =>
   });
 
 export const loginApi = data =>
-  fetch('http://127.0.0.1:4000/customers/login/', {
+  fetch(`${api}/user/login/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

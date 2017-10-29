@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { theme } from '../../utils/theme';
 import homebackground from '../../images/home.jpg';
 import promotionbackground from '../../images/background.gif';
-import { reminderbackground } from '../../images/reminder.jpg';
+import cardbackground from '../../images/card.jpg';
 
 export const Container = styled.div`
   padding: 16px 16px 0px 16px;
@@ -20,7 +20,6 @@ export const Container = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
     z-index: 0px;
   }
 
@@ -37,97 +36,46 @@ export const FabContainer = styled.div`
   right: 0px;
 `;
 
-export const OrdersContainer = styled.div`
-  width: 284px;
-  display: flex;
-  flex-direction: column;
-
-  & > * + * {
-    margin: 8px 0px 0px 0px;
-  }
-`;
-
 export const PromotionContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 800px;
+  height: 400px;
+  transform: translateX(-50%) translateY(-50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 45px, rgba(0, 0, 0, 0.22) 0px 10px 18px;
+  border-radius: 8px;
 
-export const TitleWrapper = styled.div`
-  font-size: 82px;
-  font-weight: 300;
-  color: ${theme.alternateTextColor};
-`;
-
-export const Logo = styled.div``;
-
-export const OrderWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  box-shadow: -1px 15px 30px -12px black;
-  border-radius: 5px;
-  overflow: hidden;
-  background: ${theme.canvasColor};
-  height: 172px;
-`;
-
-export const IdWrapper = styled.div`
-  flex: 1;
-  background-image: url(${reminderbackground});
-  background-size: cover;
-  background-position: bottom;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-
-  &:before {
+  &::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-    z-index: 0px;
+    background-image: url(${cardbackground});
+    opacity: 0.8;
+    z-index: 0;
+    border-radius: 8px;
   }
 `;
 
-export const IdData = styled.div`
-  position: relative;
-  font-size: 32px;
-  color: ${theme.alternateTextColor};
-  height: 32px;
-  z-index: 2px;
-  margin: 0px 0px 16px 0px;
+export const TitleWrapper = styled.div`
+  font-size: 52px;
+  font-weight: 500;
+  color: #f50057;
+  font-family: 'Nosifer', cursive;
+  z-index: 1;
 `;
 
-export const MomentWrapper = styled.div`
-  display: flex;
-
-  & > * + * {
-    border-left: solid 0.5px #424242;
-  }
-`;
-
-export const MomentData = styled.div`
-  flex: 1;
-  background: #ff9800;
-  display: flex;
-  justify-content: center;
-  line-height: 36px;
-  text-align: middle;
-  font-size: 20px;
-  color: ${theme.textColor};
-  height: 36px;
-`;
+export const Logo = styled.div`margin: '32px 0px 0px 0px';`;
 
 export const GifContainer = styled.div`
   position: relative;
-  display: flex;
   padding: 16px 16px 0px 16px;
   height: 100%;
   width: 100%;
@@ -135,4 +83,27 @@ export const GifContainer = styled.div`
   background-image: url(${promotionbackground});
   background-size: cover;
   background-position: 50% 50%;
+`;
+
+export const Button = styled.div`
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.12) 1px 0px 6px, rgba(0, 0, 0, 0.12) 1px 0px 4px;
+  background-color: ${theme.canvasColor};
+  border-radius: 8px;
+`;
+
+export const SocialMediaContainer = styled.div`
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+
+  & > * + * {
+    margin: 8px 0px 0px 0px;
+  }
 `;

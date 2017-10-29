@@ -10,6 +10,8 @@ import {
   SIGNUP,
   SIGNUP_SUCCESSFUL,
   SIGNUP_FAILED,
+  OPEN_SNACK_BAR,
+  RESET_SNACK_BAR,
 } from './action';
 
 const defaultState = {};
@@ -46,9 +48,11 @@ const reducer = (state = defaultState, action) => {
       return {
         ...state,
         loginDataLoading: false,
-        signupDataLoading: false,
-        username: action.payload.username,
-        isAdmin: action.payload.isAdmin,
+        userId: action.payload.userId,
+        fullName: action.payload.fullName,
+        emailId: action.payload.emailId,
+        contactNumber: action.payload.contactNumber,
+        userLevel: action.payload.userLevel,
       };
 
     case LOGIN_FAILED:
@@ -60,8 +64,11 @@ const reducer = (state = defaultState, action) => {
     case LOGOUT:
       return {
         ...state,
-        username: undefined,
-        isAdmin: undefined,
+        fullName: undefined,
+        userId: undefined,
+        emailId: undefined,
+        userLevel: undefined,
+        contactNumber: undefined,
       };
 
     case SIGNUP:
@@ -74,13 +81,25 @@ const reducer = (state = defaultState, action) => {
       return {
         ...state,
         signupDataLoading: false,
-        loginDataLoading: false,
       };
 
     case SIGNUP_FAILED:
       return {
         ...state,
         signupDataLoading: true,
+      };
+
+    case OPEN_SNACK_BAR:
+      return {
+        ...state,
+        isSnackBarOpen: true,
+        snackBarMessage: action.payload.message,
+      };
+
+    case RESET_SNACK_BAR:
+      return {
+        ...state,
+        isSnackBarOpen: false,
       };
 
     default:

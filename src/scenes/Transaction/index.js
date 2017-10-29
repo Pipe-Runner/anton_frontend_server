@@ -9,6 +9,7 @@ import {
   searchTransactionSuccessful,
   searchTransactionFailed,
 } from './action';
+import { openSnackBar } from '../../components/AppShell/action';
 import { fetchTransactionApi, searchTransactionApi } from './api.Transaction';
 
 const mapStateToProps = state => ({
@@ -27,13 +28,16 @@ const mapDispatchToProps = dispatch => ({
       })
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
-          console.log('successful Data Fetch');
-          console.log(data.parts);
+          dispatch(openSnackBar('successful Data Fetch!'));
           dispatch(fetchTransactionSuccessful(data.transaction));
         } else {
-          console.log(data.error);
+          dispatch(openSnackBar(data.error));
           dispatch(fetchTransactionFailed());
         }
+      })
+      .catch(error => {
+        dispatch(openSnackBar('Error in fetch operation'));
+        dispatch(fetchTransactionFailed());
       });
   },
   dispatchSeachTransaction: (fuelType, manufacturer) => {

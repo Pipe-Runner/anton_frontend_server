@@ -9,11 +9,11 @@ import {
 } from 'material-ui/Table';
 
 const CustomDataTabel = ({ tableData }) => (
-  <Table height="670px" fixedHeader selectable multiSelectable>
+  <Table height="670px" fixedHeader selectable>
     <TableHeader adjustForCheckbox>
       <TableRow>
-        <TableHeaderColumn colSpan="5" style={{ textAlign: 'center' }}>
-          Inventory Table
+        <TableHeaderColumn colSpan="9" style={{ textAlign: 'center' }}>
+          Transaction Table
         </TableHeaderColumn>
       </TableRow>
       <TableRow>
@@ -22,16 +22,22 @@ const CustomDataTabel = ({ tableData }) => (
         <TableHeaderColumn>Amount</TableHeaderColumn>
         <TableHeaderColumn>Transaction Type</TableHeaderColumn>
         <TableHeaderColumn>Name</TableHeaderColumn>
+        <TableHeaderColumn>Contact Number</TableHeaderColumn>
+        <TableHeaderColumn>Date</TableHeaderColumn>
+        <TableHeaderColumn>Time</TableHeaderColumn>
       </TableRow>
     </TableHeader>
-    <TableBody displayRowCheckbox deselectOnClickaway showRowHover>
+    <TableBody displayRowCheckbox deselectOnClickaway>
       {tableData.map((row, index) => (
         <TableRow key={index}>
           <TableRowColumn>{row.id}</TableRowColumn>
           <TableRowColumn>{row.paymentMethod}</TableRowColumn>
           <TableRowColumn>{row.amount}</TableRowColumn>
           <TableRowColumn>{row.transactionType}</TableRowColumn>
-          <TableRowColumn>{row.name}</TableRowColumn>
+          <TableRowColumn>{row.cardOwnerName}</TableRowColumn>
+          <TableRowColumn>{row.contactNumberOnCard}</TableRowColumn>
+          <TableRowColumn>{row.date}</TableRowColumn>
+          <TableRowColumn>{row.time}</TableRowColumn>
         </TableRow>
       ))}
     </TableBody>

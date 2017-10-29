@@ -21,13 +21,13 @@ const reducer = (state = defaultState, action) => {
       return { ...state, fetchingData: false };
 
     case SEARCH_HISTORY:
-      return { ...state, searchingHistory: true };
+      return { ...state, fetchingData: true };
 
     case SEARCH_HISTORY_SUCCESSFUL:
-      return { ...state, searchingHistory: false, HistoryTableData: action.payload };
+      return { ...state, fetchingData: false, HistoryTableData: action.payload };
 
     case SEARCH_HISTORY_FAILED:
-      return { ...state, searchingHistory: false };
+      return { ...state, fetchingData: false };
 
     default:
       return { ...state };

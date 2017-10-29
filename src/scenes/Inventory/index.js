@@ -12,6 +12,7 @@ import {
   searchPartsSuccessful,
   searchPartsFailed,
 } from './action';
+import { openSnackBar } from '../../components/AppShell/action';
 import { fetchInventoryApi, addPartsToBillApi, searchPartsApi } from './api.Inventory';
 
 const mapStateToProps = state => ({
@@ -30,13 +31,16 @@ const mapDispatchToProps = dispatch => ({
       })
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
-          console.log('successful Data Fetch');
-          console.log(data.parts);
+          dispatch(openSnackBar('Fetch Operation Successful'));
           dispatch(fetchInventorySuccessful(data.parts));
         } else {
-          console.log(data.error);
+          dispatch(openSnackBar(data.error));
           dispatch(fetchInventoryFailed());
         }
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(openSnackBar('Problem in Fetch Operation!'));
       });
   },
   dispatchAddPartsToBill: (employeeId, partsArray, billId) => {

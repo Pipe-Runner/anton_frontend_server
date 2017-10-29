@@ -1,16 +1,7 @@
 import api from '../../api';
 
-export const fetchInventoryApi = data =>
-  fetch(`${api}/inventory/fetchall`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  });
-
-export const addPartsToBillApi = data =>
-  fetch(`${api}/inventory/fetchall`, {
+export const getBookingsApi = data =>
+  fetch(`${api}/booking/fetchbycredentials`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -19,8 +10,18 @@ export const addPartsToBillApi = data =>
     body: JSON.stringify(data),
   });
 
-export const searchPartsApi = data =>
-  fetch(`${api}/inventory/fetchall`, {
+export const verifybookingdata1Api = data =>
+  fetch(`${api}/booking/verifydata1/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+export const submitBookingDataApi = data =>
+  fetch(`${api}/booking/submitbookingdata/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

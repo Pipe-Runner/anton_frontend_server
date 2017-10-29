@@ -1,37 +1,80 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-import AcceptButton from 'react-icons/lib/fa/play';
-import RejectButton from 'react-icons/lib/ti/cancel';
+import AcceptIcon from 'react-icons/lib/fa/play';
+import VerifyIcon from 'react-icons/lib/md/verified-user';
+import RejectIcon from 'react-icons/lib/ti/cancel';
 import { FormContainer, Spacer, ButtonContainer } from './styles';
+import DatePicker from 'material-ui/DatePicker';
+import TimePicker from 'material-ui/TimePicker';
 
-const BookingForm = ({ onChange, handlePrev, handleNext }) => (
+const BookingForm = ({
+  userId,
+  emailId,
+  contactNumber,
+  date,
+  time,
+  onChange,
+  handlePrev,
+  handleNext,
+  isVerified,
+  verfifyData,
+}) => (
   <FormContainer>
-    <TextField onChange={onChange('name')} hintText="Name" fullWidth={true} />
-    <TextField onChange={onChange('customerId')} hintText="Customer ID" fullWidth={true} />
-    <TextField onChange={onChange('carName')} hintText="Car Name" fullWidth={true} />
-    <TextField onChange={onChange('fuelType')} hintText="Fuel Type" fullWidth={true} />
+    <TextField fullWidth={true} defaultValue={userId} floatingLabelText="User ID" disabled={true} />
     <TextField
-      onChange={onChange('serviceType')}
-      hintText="Service Type (Repairs / Repaint / Servicing)"
+      fullWidth={true}
+      defaultValue={emailId}
+      floatingLabelText="Email ID"
+      disabled={true}
+    />
+    <TextField
+      value={contactNumber}
+      floatingLabelText="Contact Number"
+      disabled={true}
+      hintText="Contact Number"
       fullWidth={true}
     />
-    <TextField onChange={onChange('phoneNumber')} hintText="Phone Number" fullWidth={true} />
+    <DatePicker
+      floatingLabelText="Booking Date"
+      value={date}
+      onChange={onChange('date')}
+      mode="landscape"
+      fullWidth={true}
+    />
+    <TimePicker
+      floatingLabelText="Booking Time"
+      value={time}
+      pedantic={true}
+      onChange={onChange('time')}
+      fullWidth={true}
+      minutesStep={30}
+    />
     <Spacer />
     <ButtonContainer>
       <FlatButton
         backgroundColor="#F50057"
         hoverColor="#FF4081"
-        icon={<RejectButton color={'#ffffff'} />}
+        icon={<RejectIcon color={'#ffffff'} />}
         onClick={handlePrev}
       />
-      <FlatButton
-        style={{ margin: '0px 0px 0px 16px' }}
-        backgroundColor="#a4c639"
-        hoverColor="#8AA62F"
-        icon={<AcceptButton color={'#ffffff'} />}
-        onClick={handleNext}
-      />
+      {isVerified ? (
+        <FlatButton
+          style={{ margin: '0px 0px 0px 16px' }}
+          backgroundColor="#a4c639"
+          hoverColor="#8AA62F"
+          icon={<AcceptIcon color={'#ffffff'} />}
+          onClick={handleNext}
+        />
+      ) : (
+        <FlatButton
+          style={{ margin: '0px 0px 0px 16px' }}
+          backgroundColor="#9C27B0"
+          hoverColor="#AB47BC"
+          icon={<VerifyIcon color={'#ffffff'} />}
+          onClick={verfifyData(0)}
+        />
+      )}
     </ButtonContainer>
   </FormContainer>
 );

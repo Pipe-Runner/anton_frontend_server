@@ -1,24 +1,24 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 
-export const SignupButton = ({ modalTitle, data, modalFunction, reset }) => (
+export const SignupButton = ({ modalTitle, checkAndSubmit }) => (
   <FlatButton
     label={modalTitle}
     primary={true}
-    onClick={() => {
-      modalFunction(data.username, data.password, data.contactNumber, data.adminToken);
-      reset();
+    onClick={event => {
+      event.preventDefault();
+      checkAndSubmit('SIGNUP')();
     }}
   />
 );
 
-export const LoginButton = ({ modalTitle, data, modalFunction, reset }) => (
+export const LoginButton = ({ modalTitle, checkAndSubmit }) => (
   <FlatButton
     label={modalTitle}
     primary={true}
-    onClick={() => {
-      modalFunction(data.username, data.password, data.contactNumber, data.isAdmin);
-      reset();
+    onClick={event => {
+      event.preventDefault();
+      checkAndSubmit('LOGIN')();
     }}
   />
 );

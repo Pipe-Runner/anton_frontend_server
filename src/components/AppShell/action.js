@@ -9,6 +9,8 @@ export const LOGOUT = 'APPSHELL/LOGOUT';
 export const SIGNUP = 'APPSHELL/SIGNUP';
 export const SIGNUP_SUCCESSFUL = 'APPSHELL/SIGNUP_SUCCESSFUL';
 export const SIGNUP_FAILED = 'APPSHELL/SIGNUP_FAILED';
+export const OPEN_SNACK_BAR = 'APPSHELL/OPEN_SNACK_BAR';
+export const RESET_SNACK_BAR = 'APPSHELL/RESET_SNACK_BAR';
 
 export const showModal = (title, type, actionFunction) => ({
   type: SHOW_MODAL,
@@ -19,22 +21,13 @@ export const hideModal = () => ({
   type: HIDE_MODAL,
 });
 
-export const showError = (errorText, timeout) => ({
-  type: SHOW_ERROR,
-  payload: { errorText, timeout },
-});
-
-export const hideError = () => ({
-  type: HIDE_ERROR,
-});
-
 export const login = () => ({
   type: LOGIN,
 });
 
-export const loginSuccessful = (username, isAdmin) => ({
+export const loginSuccessful = (fullName, emailId, userId, contactNumber, userLevel) => ({
   type: LOGIN_SUCCESSFUL,
-  payload: { username, isAdmin },
+  payload: { fullName, emailId, userId, contactNumber, userLevel },
 });
 
 export const loginFailed = () => ({
@@ -45,15 +38,23 @@ export const logout = () => ({
   type: LOGOUT,
 });
 
-export const signup = (username, password, contactNumber, adminUser, adminToken) => ({
+export const signup = () => ({
   type: SIGNUP,
-  payload: { username, password, adminUser, contactNumber, adminToken },
 });
 
-export const signupSuccessful = (username, token, adminUser, contactNumber) => ({
+export const signupSuccessful = () => ({
   type: SIGNUP_SUCCESSFUL,
 });
 
 export const signupFailed = () => ({
   type: SIGNUP_FAILED,
+});
+
+export const openSnackBar = message => ({
+  type: OPEN_SNACK_BAR,
+  payload: { message },
+});
+
+export const resetSnackBar = () => ({
+  type: RESET_SNACK_BAR,
 });
