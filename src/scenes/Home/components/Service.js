@@ -1,6 +1,6 @@
 import React from 'react';
 import { ServiceContainer } from './styles.js';
 
-const Order = () => <ServiceContainer>di</ServiceContainer>;
+const Service = () => <ServiceContainer>di</ServiceContainer>;
 
-export default Order;
+export default Service;

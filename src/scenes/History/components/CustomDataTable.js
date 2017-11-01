@@ -7,12 +7,13 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import moment from 'moment';
 
 const CustomDataTabel = ({ tableData }) => (
-  <Table height="670px" fixedHeader selectable>
-    <TableHeader adjustForCheckbox>
+  <Table height="670px" fixedHeader selectable={false}>
+    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
       <TableRow>
-        <TableHeaderColumn colSpan="9" style={{ textAlign: 'center' }}>
+        <TableHeaderColumn colSpan="8" style={{ textAlign: 'center' }}>
           History Table
         </TableHeaderColumn>
       </TableRow>
@@ -23,22 +24,20 @@ const CustomDataTabel = ({ tableData }) => (
         <TableHeaderColumn>Employee Name</TableHeaderColumn>
         <TableHeaderColumn>Employee ID</TableHeaderColumn>
         <TableHeaderColumn>Amount</TableHeaderColumn>
-        <TableHeaderColumn>Time</TableHeaderColumn>
         <TableHeaderColumn>Date</TableHeaderColumn>
         <TableHeaderColumn>Transaction Type</TableHeaderColumn>
       </TableRow>
     </TableHeader>
-    <TableBody displayRowCheckbox deselectOnClickaway>
+    <TableBody displayRowCheckbox={false} deselectOnClickaway>
       {tableData.map((row, index) => (
         <TableRow key={index}>
           <TableRowColumn>{row.id}</TableRowColumn>
           <TableRowColumn>{row.transactionId}</TableRowColumn>
-          <TableRowColumn>{row.emailId}</TableRowColumn>
-          <TableRowColumn>{row.fullName}</TableRowColumn>
+          <TableRowColumn>{row.userEmailId}</TableRowColumn>
+          <TableRowColumn>{row.employeeName}</TableRowColumn>
           <TableRowColumn>{row.employeeId}</TableRowColumn>
-          <TableRowColumn>{row.transactionAmount}</TableRowColumn>
-          <TableRowColumn>{row.transactionTime}</TableRowColumn>
-          <TableRowColumn>{row.transactionDate}</TableRowColumn>
+          <TableRowColumn>&#x20b9; {row.transactionAmount}</TableRowColumn>
+          <TableRowColumn>{moment(row.transactionDate).format('DD-MM-YYYY')}</TableRowColumn>
           <TableRowColumn>{row.transactionType}</TableRowColumn>
         </TableRow>
       ))}

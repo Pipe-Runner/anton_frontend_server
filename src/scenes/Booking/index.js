@@ -62,7 +62,6 @@ const mapDispatchToProps = dispatch => ({
     }
   },
   dispatchSubmitData: (data, onFinish) => {
-    console.log(data);
     submitData();
     submitBookingDataApi(data)
       .then(response => {
@@ -76,7 +75,6 @@ const mapDispatchToProps = dispatch => ({
         if (data.code === '200' && data.error === 'none') {
           dispatch(openSnackBar('Booking Confirmed!'));
           dispatch(submitDataSuccessful());
-          console.log('finished');
           onFinish();
         } else {
           dispatch(openSnackBar(data.error));

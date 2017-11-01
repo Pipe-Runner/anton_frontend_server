@@ -19,6 +19,8 @@ import CompanyIcon from 'react-icons/lib/md/build';
 import Order from './components/Order';
 import Service from './components/Service';
 import Notification from './components/Notification';
+import Status from './components/Status';
+import Feedback from './components/Feedback';
 
 const Home = ({
   bookingData = [],
@@ -27,6 +29,10 @@ const Home = ({
   emailId,
   userLevel,
   dispatchGetBooking,
+  bookingCount,
+  transactionCount,
+  partCount,
+  dispatchFetchSoldCount,
 }) =>
   userId !== undefined && userLevel < 1 ? (
     <Container>
@@ -68,6 +74,13 @@ const Home = ({
           </Button>
         </Jello>
       </SocialMediaContainer>
+      <Status
+        transactionCount={transactionCount}
+        partCount={partCount}
+        bookingCount={bookingCount}
+        dispatchFetchSoldCount={dispatchFetchSoldCount}
+      />
+      <Feedback />
     </GifContainer>
   );
 

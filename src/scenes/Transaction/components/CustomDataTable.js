@@ -10,9 +10,9 @@ import {
 
 const CustomDataTabel = ({ tableData }) => (
   <Table height="670px" fixedHeader selectable>
-    <TableHeader adjustForCheckbox>
+    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
       <TableRow>
-        <TableHeaderColumn colSpan="9" style={{ textAlign: 'center' }}>
+        <TableHeaderColumn colSpan="8" style={{ textAlign: 'center' }}>
           Transaction Table
         </TableHeaderColumn>
       </TableRow>
@@ -27,7 +27,7 @@ const CustomDataTabel = ({ tableData }) => (
         <TableHeaderColumn>Time</TableHeaderColumn>
       </TableRow>
     </TableHeader>
-    <TableBody displayRowCheckbox deselectOnClickaway>
+    <TableBody displayRowCheckbox={false} deselectOnClickaway={false}>
       {tableData.map((row, index) => (
         <TableRow key={index}>
           <TableRowColumn>{row.id}</TableRowColumn>

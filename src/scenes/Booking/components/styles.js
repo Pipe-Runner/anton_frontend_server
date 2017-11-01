@@ -6,7 +6,6 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 16px 16px 16px 16px;
-
   & > * + * {
     margin: 16px 0px 0px 0px;
   }

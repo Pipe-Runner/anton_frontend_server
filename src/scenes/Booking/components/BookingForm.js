@@ -45,7 +45,6 @@ const BookingForm = ({
     <TimePicker
       floatingLabelText="Booking Time"
       value={time}
-      pedantic={true}
       onChange={onChange('time')}
       fullWidth={true}
       minutesStep={30}

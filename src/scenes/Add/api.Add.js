@@ -1,7 +1,7 @@
 import api from '../../api';
 
-export const fetchInventoryApi = data =>
-  fetch(`${api}/inventory/fetchall`, {
+export const fetchSupplierListApi = () =>
+  fetch(`${api}/supplier/fetchall`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -9,8 +9,8 @@ export const fetchInventoryApi = data =>
     },
   });
 
-export const addPartsToBillApi = data =>
-  fetch(`${api}/inventory/fetchall`, {
+export const addItemApi = data =>
+  fetch(`${api}/inventory/add`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -19,21 +19,12 @@ export const addPartsToBillApi = data =>
     body: JSON.stringify(data),
   });
 
-export const searchPartsApi = data =>
-  fetch(`${api}/inventory/fetchall`, {
+export const addSupplierApi = data =>
+  fetch(`${api}/supplier/add`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
     body: JSON.stringify(data),
-  });
-
-export const fetchSoldCountApi = () =>
-  fetch(`${api}/inventory/fetchsoldcount`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
   });

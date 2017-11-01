@@ -39,7 +39,7 @@ export const FabContainer = styled.div`
 export const PromotionContainer = styled.div`
   position: relative;
   left: 50%;
-  top: 50%;
+  top: 40%;
   width: 800px;
   height: 400px;
   transform: translateX(-50%) translateY(-50%);

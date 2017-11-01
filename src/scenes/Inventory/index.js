@@ -17,6 +17,7 @@ import { fetchInventoryApi, addPartsToBillApi, searchPartsApi } from './api.Inve
 
 const mapStateToProps = state => ({
   ...state.inventory,
+  employeeId: state.appshell.employeeId,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -43,8 +44,9 @@ const mapDispatchToProps = dispatch => ({
         dispatch(openSnackBar('Problem in Fetch Operation!'));
       });
   },
-  dispatchAddPartsToBill: (employeeId, partsArray, billId) => {
-    const data = { employeeId, partsArray, billId };
+  dispatchAddPartsToBill: (employeeId, cart, customerEmailId, customerContactNumber, reset) => {
+    const data = { employeeId, cart, customerEmailId, customerContactNumber };
+    console.log(data);
     dispatch(addPartsToBill());
     addPartsToBillApi(data)
       .then(response => {
@@ -55,16 +57,24 @@ const mapDispatchToProps = dispatch => ({
       })
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
-          console.log('successful Addition To Bill');
+          dispatch(openSnackBar('Transaction Successful!'));
+          reset();
           dispatch(addPartsToBillSuccessful());
+          dispatch(fetchInventorySuccessful(data.parts));
         } else {
-          console.log(data.error);
+          dispatch(openSnackBar(data.error));
           dispatch(addPartsToBillFailed());
         }
+      })
+      .catch(error => {
+        console.log('Error in fetch operation');
       });
   },
   dispatchSeachParts: (fuelType, manufacturer) => {
     // search for parts
+  },
+  dispatchCartFullError: () => {
+    dispatch(openSnackBar('Cart Full'));
   },
 });
 

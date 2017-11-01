@@ -28,6 +28,7 @@ const mapDispatchToProps = dispatch => ({
       })
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
+          console.log(data);
           dispatch(openSnackBar('successful Data Fetch!'));
           dispatch(fetchHistorySuccessful(data.history));
         } else {

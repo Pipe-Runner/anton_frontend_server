@@ -10,22 +10,8 @@ export const Container = styled.div`
   padding: 12px;
 `;
 
-export const ChipsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 6px 0px 0px 0px;
-`;
-
 export const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
   margin: 8px 0px 0px 0px;
-`;
-
-export const PaymentInfoWrapper = styled.div`
-  flex: 1;
-  text-align: center;
-  font-size: 18px;
-  line-height: 36px;
-  vertical-align: middle;
 `;

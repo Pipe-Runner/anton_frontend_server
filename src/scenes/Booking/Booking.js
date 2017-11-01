@@ -34,7 +34,6 @@ class Booking extends Component {
   };
 
   onChange = textField => (event, value) => {
-    console.log(value);
     this.setState({ ...this.state, [textField]: value });
   };
 
@@ -61,7 +60,6 @@ class Booking extends Component {
   };
 
   submitData = () => {
-    console.log('fire');
     const data = {
       emailId: this.state.emailId,
       userId: this.state.userId,

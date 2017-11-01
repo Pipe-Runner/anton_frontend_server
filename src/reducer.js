@@ -1,13 +1,11 @@
 import { combineReducers } from 'redux';
 import appshell from './components/AppShell/reducer';
 import inventory from './scenes/Inventory/reducer';
-// import home from './scenes/reducer';
 import history from './scenes/History/reducer';
 import transaction from './scenes/Transaction/reducer';
 import booking from './scenes/Booking/reducer';
-// import invoice from './scenes/reducer';
-// import employee from './scenes/reducer';
-// import salary from './scenes/reducer';
+import bookingList from './scenes/BookingList/reducer';
+import add from './scenes/Add/reducer';
 
 const rootReducer = combineReducers({
   appshell: appshell,
@@ -15,6 +13,8 @@ const rootReducer = combineReducers({
   history: history,
   transaction: transaction,
   booking: booking,
+  bookingList: bookingList,
+  add: add,
 });
 
 export default rootReducer;

@@ -19,7 +19,6 @@ export const MainWrapper = styled.div`
   box-shadow: rgba(0, 0, 0, 0.12) 1px 0px 6px, rgba(0, 0, 0, 0.12) 1px 0px 4px;
   border-radius: 2px;
   background-color: ${theme.canvasColor};
-
   & > * {
     margin: 16px;
   }

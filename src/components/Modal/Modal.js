@@ -63,7 +63,6 @@ class Modal extends Component {
             });
           }
         };
-        break;
       case 'LOGIN':
         return () => {
           if (this.state.password === '') {
@@ -95,7 +94,6 @@ class Modal extends Component {
             });
           }
         };
-        break;
       default:
         break;
     }

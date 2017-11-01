@@ -8,6 +8,9 @@ import {
   SEARCH_PARTS,
   SEARCH_PARTS_SUCCESSFUL,
   SEARCH_PARTS_FAILED,
+  FETCH_SOLD_COUNT,
+  FETCH_SOLD_COUNT_SUCCESSFUL,
+  FETCH_SOLD_COUNT_FAILED,
 } from './action';
 
 const defaultState = {};
@@ -27,7 +30,7 @@ const reducer = (state = defaultState, action) => {
       return { ...state, addingPartsToBill: true };
 
     case ADD_PARTS_TO_BILL_SUCCESSFUL:
-      return { ...state, addingPartsToBill: false };
+      return { ...state, addingPartsToBill: false, inventoryTableData: action.payload };
 
     case ADD_PARTS_TO_BILL_FAILED:
       return { ...state, addingPartsToBill: false };
@@ -40,6 +43,27 @@ const reducer = (state = defaultState, action) => {
 
     case SEARCH_PARTS_FAILED:
       return { ...state, searchingParts: false };
+
+    case FETCH_SOLD_COUNT:
+      return {
+        ...state,
+        fetchingSoldCount: true,
+      };
+
+    case FETCH_SOLD_COUNT_SUCCESSFUL:
+      return {
+        ...state,
+        fetchingSoldCount: false,
+        transactionCount: action.payload.transactionCount,
+        partCount: action.payload.partCount,
+        bookingCount: action.payload.bookingCount,
+      };
+
+    case FETCH_SOLD_COUNT_FAILED:
+      return {
+        ...state,
+        fetchingSoldCount: false,
+      };
 
     default:
       return { ...state };

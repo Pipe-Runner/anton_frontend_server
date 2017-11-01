@@ -8,9 +8,9 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
-const CustomDataTabel = ({ tableData, onRowSelection }) => (
-  <Table height="670px" fixedHeader selectable onRowSelection={onRowSelection}>
-    <TableHeader adjustForCheckbox>
+const CustomDataTabel = ({ tableData, onRowSelection, isSelected }) => (
+  <Table height="670px" fixedHeader selectable onRowSelection={onRowSelection} multiSelectable>
+    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
       <TableRow>
         <TableHeaderColumn colSpan="8" style={{ textAlign: 'center' }}>
           Inventory Table
@@ -27,16 +27,16 @@ const CustomDataTabel = ({ tableData, onRowSelection }) => (
         <TableHeaderColumn>Stored At</TableHeaderColumn>
       </TableRow>
     </TableHeader>
-    <TableBody displayRowCheckbox deselectOnClickaway>
+    <TableBody displayRowCheckbox={false} deselectOnClickaway={false}>
       {tableData.map((row, index) => (
-        <TableRow key={index}>
+        <TableRow key={index} selected={isSelected(index)}>
           <TableRowColumn>{row.id}</TableRowColumn>
           <TableRowColumn>{row.partType}</TableRowColumn>
           <TableRowColumn>{row.modelNumber}</TableRowColumn>
           <TableRowColumn>{row.supplierName}</TableRowColumn>
           <TableRowColumn>{row.vehicle}</TableRowColumn>
           <TableRowColumn>{row.fuelType}</TableRowColumn>
-          <TableRowColumn>{row.cost}</TableRowColumn>
+          <TableRowColumn> &#x20b9; {row.cost}</TableRowColumn>
           <TableRowColumn>{row.storedAt}</TableRowColumn>
         </TableRow>
       ))}

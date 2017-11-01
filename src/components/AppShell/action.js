@@ -25,9 +25,16 @@ export const login = () => ({
   type: LOGIN,
 });
 
-export const loginSuccessful = (fullName, emailId, userId, contactNumber, userLevel) => ({
+export const loginSuccessful = (
+  fullName,
+  emailId,
+  userId,
+  contactNumber,
+  userLevel,
+  employeeId
+) => ({
   type: LOGIN_SUCCESSFUL,
-  payload: { fullName, emailId, userId, contactNumber, userLevel },
+  payload: { fullName, emailId, userId, contactNumber, userLevel, employeeId },
 });
 
 export const loginFailed = () => ({

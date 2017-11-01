@@ -37,13 +37,15 @@ const mapDispatchToProps = dispatch => ({
         if (data.code === '200' && data.error === 'none') {
           dispatch(openSnackBar(`Wecome ${data.fullName}!`));
           dispatch(hideModal());
+          console.log(data);
           dispatch(
             loginSuccessful(
               data.fullName,
               data.emailId,
               data.userId,
               data.contactNumber,
-              data.userLevel
+              data.userLevel,
+              data.employeeId
             )
           );
         } else {

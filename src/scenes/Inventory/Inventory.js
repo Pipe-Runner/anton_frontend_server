@@ -8,40 +8,86 @@ class Inventory extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rowSelection: [],
+      customerEmailId: '',
+      customerContactNumber: '',
+      selected: [],
       cart: [],
       filter: {},
     };
   }
 
-  onRowSelection = selectedElements => {
-    console.log(selectedElements);
+  onTextFieldChange = textField => (event, value) => {
+    this.setState({
+      ...this.state,
+      [textField]: value,
+    });
   };
-
-  onAddToCard = () => {};
-
-  onCheckOut = () => {};
 
   componentDidMount() {
     this.props.dispatchFetchInventory();
   }
 
+  isSelected = index => {
+    return this.state.selected.indexOf(index) !== -1;
+  };
+
+  onRowSelection = selectedElements => {
+    if (selectedElements.length > 10) {
+      this.props.dispatchCartFullError();
+    } else {
+      let cart = [];
+      selectedElements.map(item => {
+        cart = [...cart, this.props.inventoryTableData[item]];
+        return cart;
+      });
+      this.setState({ ...this.state, selected: selectedElements, cart: cart });
+    }
+  };
+
+  reset = () => {
+    this.setState({
+      ...this.state,
+      selected: [],
+      cart: [],
+    });
+  };
+
+  onCheckOut = () => {
+    this.props.dispatchAddPartsToBill(
+      this.props.employeeId,
+      this.state.cart,
+      this.state.customerEmailId,
+      this.state.customerContactNumber,
+      this.reset
+    );
+  };
+
   render() {
-    const { inventoryTableData } = this.props;
-    console.log(inventoryTableData);
+    const { inventoryTableData, employeeId } = this.props;
 
     return (
       <Container>
         <TableWrapper>
           {inventoryTableData ? (
-            <CustomDataTable onRowSelection={this.onRowSelection} tableData={inventoryTableData} />
+            <CustomDataTable
+              isSelected={this.isSelected}
+              onRowSelection={this.onRowSelection}
+              tableData={inventoryTableData}
+            />
           ) : (
             undefined
           )}
         </TableWrapper>
         <Wrapper>
           <SearchBar onSearch={() => {}} />
-          <AddPartToBillBar />
+          <AddPartToBillBar
+            customerContactNumber={this.state.customerContactNumber}
+            customerEmailId={this.state.customerEmailId}
+            cart={this.state.cart}
+            employeeId={employeeId}
+            onTextFieldChange={this.onTextFieldChange}
+            onCheckOut={this.onCheckOut}
+          />
         </Wrapper>
       </Container>
     );

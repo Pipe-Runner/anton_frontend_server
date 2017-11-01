@@ -53,6 +53,7 @@ const reducer = (state = defaultState, action) => {
         emailId: action.payload.emailId,
         contactNumber: action.payload.contactNumber,
         userLevel: action.payload.userLevel,
+        employeeId: action.payload.employeeId,
       };
 
     case LOGIN_FAILED:

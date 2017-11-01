@@ -33,7 +33,10 @@ const PaymentForm = ({
         backgroundColor="#a4c639"
         hoverColor="#8AA62F"
         icon={<AcceptButton color={'#ffffff'} />}
-        onClick={submitData}
+        onClick={event => {
+          event.preventDefault();
+          submitData();
+        }}
       />
     </ButtonContainer>
   </FormContainer>
