@@ -10,7 +10,7 @@ export const fetchInventoryApi = data =>
   });
 
 export const addPartsToBillApi = data =>
-  fetch(`${api}/inventory/fetchall`, {
+  fetch(`${api}/inventory/addpartstobill`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

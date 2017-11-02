@@ -17,16 +17,16 @@ class BookingList extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.dispatchFetchPendingBooking();
+  }
+
   onTextFieldChange = textField => (event, value) => {
     this.setState({
       ...this.state,
       [textField]: value,
     });
   };
-
-  componentDidMount() {
-    this.props.dispatchFetchPendingBooking();
-  }
 
   isSelected = index => {
     return this.state.selected.indexOf(index) !== -1;

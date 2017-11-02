@@ -9,7 +9,9 @@ class Inventory extends Component {
     super(props);
     this.state = {
       customerEmailId: '',
+      customerEmailIdError: undefined,
       customerContactNumber: '',
+      customerContactNumberError: undefined,
       selected: [],
       cart: [],
       filter: {},
@@ -20,6 +22,7 @@ class Inventory extends Component {
     this.setState({
       ...this.state,
       [textField]: value,
+      [textField + 'Error']: undefined,
     });
   };
 
@@ -53,13 +56,32 @@ class Inventory extends Component {
   };
 
   onCheckOut = () => {
-    this.props.dispatchAddPartsToBill(
-      this.props.employeeId,
-      this.state.cart,
-      this.state.customerEmailId,
-      this.state.customerContactNumber,
-      this.reset
-    );
+    let isDirty = false;
+    let customerContactNumberError = undefined;
+    let customerEmailIdError = undefined;
+
+    if (this.state.customerContactNumber === '') {
+      isDirty = true;
+      customerContactNumberError = 'Contact Number cannot be empty';
+    }
+    if (this.state.customerEmailId === '') {
+      isDirty = true;
+      customerEmailIdError = 'Contact Email ID cannot be empty';
+    }
+    this.setState({ ...this.state, customerContactNumberError, customerEmailIdError });
+
+    if (!isDirty) {
+      const amount = this.state.cart.reduce((acc, curr) => (acc = acc + curr.cost), 0);
+
+      this.props.dispatchAddPartsToBill(
+        this.props.employeeId,
+        this.state.cart,
+        this.state.customerEmailId,
+        this.state.customerContactNumber,
+        amount,
+        this.reset
+      );
+    }
   };
 
   render() {
@@ -82,7 +104,9 @@ class Inventory extends Component {
           <SearchBar onSearch={() => {}} />
           <AddPartToBillBar
             customerContactNumber={this.state.customerContactNumber}
+            customerContactNumberError={this.state.customerContactNumberError}
             customerEmailId={this.state.customerEmailId}
+            customerEmailIdError={this.state.customerEmailIdError}
             cart={this.state.cart}
             employeeId={employeeId}
             onTextFieldChange={this.onTextFieldChange}

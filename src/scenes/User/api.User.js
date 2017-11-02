@@ -1,5 +1,7 @@
-export const fetchUserApi = data =>
-  fetch('http://127.0.0.1:4000/inventory/fetchinventory', {
+import api from '../../api';
+
+export const fetchUserApi = () =>
+  fetch(`${api}/user/fetchall`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -7,8 +9,28 @@ export const fetchUserApi = data =>
     },
   });
 
+export const makeEmployeeApi = data =>
+  fetch(`${api}/user/makeemployee/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+export const changeUserStatusApi = data =>
+  fetch(`${api}/user/changeuserstatus/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
 export const searchUserApi = data =>
-  fetch('http://127.0.0.1:4000/inventory/searchparts/', {
+  fetch(`${api}/inventory/searchparts/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

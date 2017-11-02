@@ -118,7 +118,7 @@ class Modal extends Component {
   };
 
   onTextFieldChange = fieldName => (event, newValue) => {
-    this.setState(state => ({ ...state, [fieldName]: newValue }));
+    this.setState(state => ({ ...state, [fieldName]: newValue, [fieldName + 'Error']: undefined }));
   };
 
   fieldsRenderer = modalType => {

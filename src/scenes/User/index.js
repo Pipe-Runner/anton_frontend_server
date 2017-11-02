@@ -5,20 +5,90 @@ import {
   fetchUser,
   fetchUserSuccessful,
   fetchUserFailed,
+  changeUserStatus,
+  changeUserStatusSuccessful,
+  changeUserStatusFailed,
+  makeEmployee,
+  makeEmployeeSuccessful,
+  makeEmployeeFailed,
   searchUser,
   searchUserSuccessful,
   searchUserFailed,
 } from './action';
-import { fetchUserApi } from './api.User';
+import { openSnackBar } from '../../components/AppShell/action';
+import { fetchUserApi, changeUserStatusApi, makeEmployeeApi, searchUserApi } from './api.User';
 
 const mapStateToProps = state => ({
   ...state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatchFetchUser: filterData => {},
-  dispatchSeachParts: (fuelType, manufacturer) => {
-    // search for parts
+  dispatchFetchUser: () => {
+    dispatch(fetchUser());
+    fetchUserApi()
+      .then(response => {
+        if (response.ok === true) {
+          return response.json();
+        }
+        throw new Error('Error in network');
+      })
+      .then(data => {
+        if (data.code === '200' && data.error === 'none') {
+          dispatch(openSnackBar('Fetch Operation Successful'));
+          dispatch(fetchUserSuccessful(data.userList));
+        } else {
+          dispatch(openSnackBar(data.error));
+          dispatch(fetchUserFailed);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  },
+  dispatchMakeEmployee: data => {
+    dispatch(makeEmployee());
+    makeEmployeeApi(data)
+      .then(response => {
+        if (response.ok === true) {
+          return response.json();
+        }
+        throw new Error('Error in network');
+      })
+      .then(data => {
+        if (data.code === '200' && data.error === 'none') {
+          dispatch(openSnackBar('New Employee Added!'));
+          dispatch(makeEmployeeSuccessful(data.userList));
+        } else {
+          dispatch(openSnackBar(data.error));
+          dispatch(makeEmployeeFailed());
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  },
+  dispatchChangeUserStatus: data => {
+    dispatch(changeUserStatus());
+    changeUserStatusApi(data)
+      .then(response => {
+        if (response.ok === true) {
+          return response.json();
+        }
+        throw new Error('Error in network');
+      })
+      .then(data => {
+        if (data.code === '200' && data.error === 'none') {
+          console.log(data);
+          dispatch(openSnackBar('User Status Changed'));
+          dispatch(fetchUserSuccessful(data.userList));
+        } else {
+          dispatch(openSnackBar(data.error));
+          dispatch(fetchUserFailed);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   },
 });
 

@@ -44,9 +44,15 @@ const mapDispatchToProps = dispatch => ({
         dispatch(openSnackBar('Problem in Fetch Operation!'));
       });
   },
-  dispatchAddPartsToBill: (employeeId, cart, customerEmailId, customerContactNumber, reset) => {
-    const data = { employeeId, cart, customerEmailId, customerContactNumber };
-    console.log(data);
+  dispatchAddPartsToBill: (
+    employeeId,
+    cart,
+    customerEmailId,
+    customerContactNumber,
+    amount,
+    reset
+  ) => {
+    const data = { employeeId, cart, customerEmailId, customerContactNumber, amount };
     dispatch(addPartsToBill());
     addPartsToBillApi(data)
       .then(response => {
@@ -56,6 +62,7 @@ const mapDispatchToProps = dispatch => ({
         throw new Error('Error in network');
       })
       .then(data => {
+        console.log(data.parts);
         if (data.code === '200' && data.error === 'none') {
           dispatch(openSnackBar('Transaction Successful!'));
           reset();

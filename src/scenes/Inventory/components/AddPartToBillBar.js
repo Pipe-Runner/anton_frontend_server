@@ -9,7 +9,9 @@ import { ButtonContainer, ChipsContainer, PaymentInfoWrapper } from './styles';
 
 const AddPartToBillBar = ({
   customerContactNumber,
+  customerContactNumberError,
   customerEmailId,
+  customerEmailIdError,
   employeeId,
   cart,
   onTextFieldChange,
@@ -23,6 +25,7 @@ const AddPartToBillBar = ({
       floatingLabelText="Customer EmailID"
       value={customerEmailId}
       onChange={onTextFieldChange('customerEmailId')}
+      errorText={customerEmailIdError}
     />
     <TextField
       disabled={employeeId === undefined ? true : false}
@@ -31,6 +34,7 @@ const AddPartToBillBar = ({
       floatingLabelText="Contact Number"
       value={customerContactNumber}
       onChange={onTextFieldChange('customerContactNumber')}
+      errorText={customerContactNumberError}
     />
     <TextField
       fullWidth

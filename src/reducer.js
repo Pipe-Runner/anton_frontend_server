@@ -6,6 +6,7 @@ import transaction from './scenes/Transaction/reducer';
 import booking from './scenes/Booking/reducer';
 import bookingList from './scenes/BookingList/reducer';
 import add from './scenes/Add/reducer';
+import user from './scenes/User/reducer';
 
 const rootReducer = combineReducers({
   appshell: appshell,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   booking: booking,
   bookingList: bookingList,
   add: add,
+  user: user,
 });
 
 export default rootReducer;

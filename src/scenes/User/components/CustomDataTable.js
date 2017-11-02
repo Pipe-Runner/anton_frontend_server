@@ -7,35 +7,53 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import NotWorkingIcon from 'react-icons/lib/md/thumb-down';
+import WorkingIcon from 'react-icons/lib/md/thumb-up';
+import UserLevelIcon from 'react-icons/lib/md/pan-tool';
 
-const CustomDataTabel = ({ tableData }) => (
-  <Table height="670px" fixedHeader selectable multiSelectable>
-    <TableHeader adjustForCheckbox>
+const CustomDataTabel = ({ tableData, onRowSelection, isSelected }) => (
+  <Table height="670px" fixedHeader onRowSelection={onRowSelection} selectable>
+    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
       <TableRow>
-        <TableHeaderColumn colSpan="7" style={{ textAlign: 'center' }}>
-          Inventory Table
+        <TableHeaderColumn colSpan="6" style={{ textAlign: 'center' }}>
+          User Table
         </TableHeaderColumn>
       </TableRow>
       <TableRow>
-        <TableHeaderColumn>Parts ID</TableHeaderColumn>
-        <TableHeaderColumn>Part Type</TableHeaderColumn>
-        <TableHeaderColumn>Model Number</TableHeaderColumn>
-        <TableHeaderColumn>Supplier ID</TableHeaderColumn>
-        <TableHeaderColumn>Vehicle</TableHeaderColumn>
-        <TableHeaderColumn>Price</TableHeaderColumn>
-        <TableHeaderColumn>Stored At</TableHeaderColumn>
+        <TableHeaderColumn>ID</TableHeaderColumn>
+        <TableHeaderColumn>Full Name</TableHeaderColumn>
+        <TableHeaderColumn>Email ID</TableHeaderColumn>
+        <TableHeaderColumn>Contact Number</TableHeaderColumn>
+        <TableHeaderColumn>User Level</TableHeaderColumn>
+        <TableHeaderColumn>Status</TableHeaderColumn>
       </TableRow>
     </TableHeader>
-    <TableBody displayRowCheckbox deselectOnClickaway showRowHover>
+    <TableBody displayRowCheckbox={false} deselectOnClickaway={false}>
       {tableData.map((row, index) => (
-        <TableRow key={index}>
+        <TableRow key={index} selected={isSelected(index)}>
           <TableRowColumn>{row.id}</TableRowColumn>
-          <TableRowColumn>{row.partType}</TableRowColumn>
-          <TableRowColumn>{row.modelNumber}</TableRowColumn>
-          <TableRowColumn>{row.supplierId}</TableRowColumn>
-          <TableRowColumn>{row.vehicleName}</TableRowColumn>
-          <TableRowColumn>{row.price}</TableRowColumn>
-          <TableRowColumn>{row.storedAt}</TableRowColumn>
+          <TableRowColumn>{row.fullName}</TableRowColumn>
+          <TableRowColumn>{row.emailId}</TableRowColumn>
+          <TableRowColumn>{row.contactNumber}</TableRowColumn>
+          <TableRowColumn>
+            {
+              <UserLevelIcon
+                size={24}
+                color={
+                  row.userLevel === 2 ? '#8E24AA' : row.userLevel === 1 ? '#64DD17' : '#2196F3'
+                }
+              />
+            }
+          </TableRowColumn>
+          <TableRowColumn>
+            {row.isWorking === null ? (
+              undefined
+            ) : row.isWorking ? (
+              <WorkingIcon size={24} color="#00C853" />
+            ) : (
+              <NotWorkingIcon size={24} color="#DD2C00" />
+            )}
+          </TableRowColumn>
         </TableRow>
       ))}
     </TableBody>

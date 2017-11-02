@@ -11,7 +11,7 @@ import HistoryIcon from 'react-icons/lib/md/history';
 import AddPartsIcon from 'react-icons/lib/md/add-circle';
 import FlatButton from 'material-ui/FlatButton';
 
-const NavBar = ({ currentPath }) => (
+const NavBar = ({ currentPath, userLevel }) => (
   <Container>
     <GifContainer src={AnimatedLogo} />
     <MenuItemsContainer>
@@ -37,18 +37,6 @@ const NavBar = ({ currentPath }) => (
         />
       </NavLink>
       <Divider />
-      <NavLink to="/user">
-        <FlatButton
-          style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 32px' }}
-          labelStyle={{ margin: '0px 0px 0px 16px' }}
-          fullWidth
-          label="Users"
-          icon={<UserIcon size={24} />}
-          backgroundColor={currentPath === '/user' ? '#FFCDD2' : undefined}
-        />
-      </NavLink>
-      <Divider />
-      <Divider />
       <NavLink to="/bookinglist">
         <FlatButton
           style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 32px' }}
@@ -71,18 +59,40 @@ const NavBar = ({ currentPath }) => (
         />
       </NavLink>
       <Divider />
-      <Divider />
-      <NavLink to="/add">
-        <FlatButton
-          style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 32px' }}
-          labelStyle={{ margin: '0px 0px 0px 16px' }}
-          fullWidth
-          label="Add Items"
-          icon={<AddPartsIcon size={24} />}
-          backgroundColor={currentPath === '/add' ? '#FFCDD2' : undefined}
-        />
-      </NavLink>
-      <Divider />
+      {userLevel === 2 ? (
+        <div>
+          <NavLink to="/add">
+            <FlatButton
+              style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 32px' }}
+              labelStyle={{ margin: '0px 0px 0px 16px' }}
+              fullWidth
+              label="Add Items"
+              icon={<AddPartsIcon size={24} />}
+              backgroundColor={currentPath === '/add' ? '#FFCDD2' : undefined}
+            />
+          </NavLink>
+          <Divider />
+        </div>
+      ) : (
+        undefined
+      )}
+      {userLevel === 2 ? (
+        <div>
+          <NavLink to="/user">
+            <FlatButton
+              style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 32px' }}
+              labelStyle={{ margin: '0px 0px 0px 16px' }}
+              fullWidth
+              label="Users"
+              icon={<UserIcon size={24} />}
+              backgroundColor={currentPath === '/user' ? '#FFCDD2' : undefined}
+            />
+          </NavLink>
+          <Divider />
+        </div>
+      ) : (
+        undefined
+      )}
     </MenuItemsContainer>
   </Container>
 );
