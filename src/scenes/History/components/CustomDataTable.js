@@ -13,12 +13,11 @@ const CustomDataTabel = ({ tableData }) => (
   <Table height="670px" fixedHeader selectable={false}>
     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
       <TableRow>
-        <TableHeaderColumn colSpan="8" style={{ textAlign: 'center' }}>
+        <TableHeaderColumn colSpan="7" style={{ textAlign: 'center' }}>
           History Table
         </TableHeaderColumn>
       </TableRow>
       <TableRow>
-        <TableHeaderColumn>Order ID</TableHeaderColumn>
         <TableHeaderColumn>Transaction ID</TableHeaderColumn>
         <TableHeaderColumn>Cusetomer Email ID</TableHeaderColumn>
         <TableHeaderColumn>Employee Name</TableHeaderColumn>
@@ -31,7 +30,6 @@ const CustomDataTabel = ({ tableData }) => (
     <TableBody displayRowCheckbox={false} deselectOnClickaway>
       {tableData.map((row, index) => (
         <TableRow key={index}>
-          <TableRowColumn>{row.id}</TableRowColumn>
           <TableRowColumn>{row.transactionId}</TableRowColumn>
           <TableRowColumn>{row.userEmailId}</TableRowColumn>
           <TableRowColumn>{row.employeeName}</TableRowColumn>

@@ -15,12 +15,11 @@ const CustomDataTabel = ({ tableData, onRowSelection, isSelected }) => (
   <Table height="670px" fixedHeader onRowSelection={onRowSelection} selectable>
     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
       <TableRow>
-        <TableHeaderColumn colSpan="6" style={{ textAlign: 'center' }}>
+        <TableHeaderColumn colSpan="5" style={{ textAlign: 'center' }}>
           User Table
         </TableHeaderColumn>
       </TableRow>
       <TableRow>
-        <TableHeaderColumn>ID</TableHeaderColumn>
         <TableHeaderColumn>Full Name</TableHeaderColumn>
         <TableHeaderColumn>Email ID</TableHeaderColumn>
         <TableHeaderColumn>Contact Number</TableHeaderColumn>
@@ -31,7 +30,6 @@ const CustomDataTabel = ({ tableData, onRowSelection, isSelected }) => (
     <TableBody displayRowCheckbox={false} deselectOnClickaway={false}>
       {tableData.map((row, index) => (
         <TableRow key={index} selected={isSelected(index)}>
-          <TableRowColumn>{row.id}</TableRowColumn>
           <TableRowColumn>{row.fullName}</TableRowColumn>
           <TableRowColumn>{row.emailId}</TableRowColumn>
           <TableRowColumn>{row.contactNumber}</TableRowColumn>
