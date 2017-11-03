@@ -10,14 +10,24 @@ import BookingIcon from 'react-icons/lib/go/repo';
 import HistoryIcon from 'react-icons/lib/md/history';
 import AddPartsIcon from 'react-icons/lib/md/add-circle';
 import FlatButton from 'material-ui/FlatButton';
+import LinearProgress from 'material-ui/LinearProgress';
 
-const NavBar = ({ currentPath, userLevel }) => (
+const NavBar = ({
+  currentPath,
+  userLevel,
+  loadingInventoryData,
+  loadingTransactionData,
+  loadingBookingListData,
+  loadingHistoryData,
+  loadingAddData,
+  loadingUserData,
+}) => (
   <Container>
     <GifContainer src={AnimatedLogo} />
     <MenuItemsContainer>
       <NavLink to="/inventory">
         <FlatButton
-          style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 32px' }}
+          style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 16px' }}
           labelStyle={{ margin: '0px 0px 0px 16px' }}
           fullWidth
           label="Inventory"
@@ -25,10 +35,11 @@ const NavBar = ({ currentPath, userLevel }) => (
           backgroundColor={currentPath === '/inventory' ? '#FFCDD2' : undefined}
         />
       </NavLink>
+      {loadingInventoryData ? <LinearProgress mode="indeterminate" color="#EC407A" /> : undefined}
       <Divider />
       <NavLink to="/transaction">
         <FlatButton
-          style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 32px' }}
+          style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 16px' }}
           labelStyle={{ margin: '0px 0px 0px 16px' }}
           fullWidth
           label="Transaction"
@@ -36,10 +47,11 @@ const NavBar = ({ currentPath, userLevel }) => (
           backgroundColor={currentPath === '/transaction' ? '#FFCDD2' : undefined}
         />
       </NavLink>
+      {loadingTransactionData ? <LinearProgress mode="indeterminate" color="#EC407A" /> : undefined}
       <Divider />
       <NavLink to="/bookinglist">
         <FlatButton
-          style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 32px' }}
+          style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 16px' }}
           labelStyle={{ margin: '0px 0px 0px 16px' }}
           fullWidth
           label="Bookings"
@@ -47,10 +59,11 @@ const NavBar = ({ currentPath, userLevel }) => (
           backgroundColor={currentPath === '/bookinglist' ? '#FFCDD2' : undefined}
         />
       </NavLink>
+      {loadingBookingListData ? <LinearProgress mode="indeterminate" color="#EC407A" /> : undefined}
       <Divider />
       <NavLink to="/history">
         <FlatButton
-          style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 32px' }}
+          style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 16px' }}
           labelStyle={{ margin: '0px 0px 0px 16px' }}
           fullWidth
           label="History"
@@ -58,12 +71,13 @@ const NavBar = ({ currentPath, userLevel }) => (
           backgroundColor={currentPath === '/history' ? '#FFCDD2' : undefined}
         />
       </NavLink>
+      {loadingHistoryData ? <LinearProgress mode="indeterminate" color="#EC407A" /> : undefined}
       <Divider />
       {userLevel === 2 ? (
         <div>
           <NavLink to="/add">
             <FlatButton
-              style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 32px' }}
+              style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 16px' }}
               labelStyle={{ margin: '0px 0px 0px 16px' }}
               fullWidth
               label="Add Items"
@@ -71,6 +85,7 @@ const NavBar = ({ currentPath, userLevel }) => (
               backgroundColor={currentPath === '/add' ? '#FFCDD2' : undefined}
             />
           </NavLink>
+          {loadingAddData ? <LinearProgress mode="indeterminate" color="#EC407A" /> : undefined}
           <Divider />
         </div>
       ) : (
@@ -80,7 +95,7 @@ const NavBar = ({ currentPath, userLevel }) => (
         <div>
           <NavLink to="/user">
             <FlatButton
-              style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 32px' }}
+              style={{ height: 64, textAlign: 'left', padding: '0px 0px 0px 16px' }}
               labelStyle={{ margin: '0px 0px 0px 16px' }}
               fullWidth
               label="Users"
@@ -88,6 +103,7 @@ const NavBar = ({ currentPath, userLevel }) => (
               backgroundColor={currentPath === '/user' ? '#FFCDD2' : undefined}
             />
           </NavLink>
+          {loadingUserData ? <LinearProgress mode="indeterminate" color="#EC407A" /> : undefined}
           <Divider />
         </div>
       ) : (

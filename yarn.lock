@@ -7735,6 +7735,10 @@ validate-npm-package-name@^3.0.0, validate-npm-package-name@~3.0.0:
   dependencies:
     builtins "^1.0.3"
 
+validator@^9.1.1:
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-9.1.1.tgz#3bdd1065cbd28f9d96ac806dee01030d32fd97ef"
+
 value-equal@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/value-equal/-/value-equal-0.4.0.tgz#c5bdd2f54ee093c04839d71ce2e4758a6890abc7"

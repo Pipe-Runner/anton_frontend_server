@@ -15,10 +15,11 @@ import {
   searchUserSuccessful,
   searchUserFailed,
 } from './action';
-import { openSnackBar } from '../../components/AppShell/action';
+import { openSnackBar, logout } from '../../components/AppShell/action';
 import { fetchUserApi, changeUserStatusApi, makeEmployeeApi, searchUserApi } from './api.User';
 
 const mapStateToProps = state => ({
+  userId: state.appshell.userId,
   ...state.user,
 });
 
@@ -67,7 +68,8 @@ const mapDispatchToProps = dispatch => ({
         console.log(error);
       });
   },
-  dispatchChangeUserStatus: data => {
+  dispatchChangeUserStatus: (data, userId) => {
+    const userIdChanged = data.userId;
     dispatch(changeUserStatus());
     changeUserStatusApi(data)
       .then(response => {
@@ -81,6 +83,9 @@ const mapDispatchToProps = dispatch => ({
           console.log(data);
           dispatch(openSnackBar('User Status Changed'));
           dispatch(fetchUserSuccessful(data.userList));
+          if (userId === userIdChanged) {
+            dispatch(logout());
+          }
         } else {
           dispatch(openSnackBar(data.error));
           dispatch(fetchUserFailed);

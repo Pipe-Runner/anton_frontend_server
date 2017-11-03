@@ -10,7 +10,12 @@ import {
 import moment from 'moment';
 
 const CustomDataTabel = ({ tableData }) => (
-  <Table height="670px" fixedHeader selectable={false}>
+  <Table
+    height={`${window.innerHeight * 0.75}px`}
+    fixedHeader
+    selectable={false}
+    bodyStyle={{ backgroundColor: '#ffffff' }}
+  >
     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
       <TableRow>
         <TableHeaderColumn colSpan="7" style={{ textAlign: 'center' }}>

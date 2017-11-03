@@ -12,7 +12,13 @@ import NotDoneIcon from 'react-icons/lib/md/thumb-down';
 import DoneIcon from 'react-icons/lib/md/thumb-up';
 
 const CustomDataTabel = ({ tableData, onRowSelection, isSelected }) => (
-  <Table height="670px" fixedHeader onRowSelection={onRowSelection} selectable>
+  <Table
+    height={`${window.innerHeight * 0.75}px`}
+    fixedHeader
+    onRowSelection={onRowSelection}
+    selectable
+    bodyStyle={{ backgroundColor: '#ffffff' }}
+  >
     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
       <TableRow>
         <TableHeaderColumn colSpan="8" style={{ textAlign: 'center' }}>

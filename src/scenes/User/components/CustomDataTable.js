@@ -12,7 +12,13 @@ import WorkingIcon from 'react-icons/lib/md/thumb-up';
 import UserLevelIcon from 'react-icons/lib/md/pan-tool';
 
 const CustomDataTabel = ({ tableData, onRowSelection, isSelected }) => (
-  <Table height="670px" fixedHeader onRowSelection={onRowSelection} selectable>
+  <Table
+    height={`${window.innerHeight * 0.75}px`}
+    fixedHeader
+    onRowSelection={onRowSelection}
+    selectable
+    bodyStyle={{ backgroundColor: '#ffffff' }}
+  >
     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
       <TableRow>
         <TableHeaderColumn colSpan="5" style={{ textAlign: 'center' }}>
@@ -38,7 +44,7 @@ const CustomDataTabel = ({ tableData, onRowSelection, isSelected }) => (
               <UserLevelIcon
                 size={24}
                 color={
-                  row.userLevel === 2 ? '#8E24AA' : row.userLevel === 1 ? '#64DD17' : '#2196F3'
+                  row.userLevel === 2 ? '#3F51B5' : row.userLevel === 1 ? '#4FC3F7' : '#FFA000'
                 }
               />
             }

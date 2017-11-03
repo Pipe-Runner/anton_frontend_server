@@ -21,6 +21,12 @@ const AppShell = ({
   isSnackBarOpen,
   snackBarMessage,
   dispatchResetSnackBar,
+  loadingInventoryData,
+  loadingTransactionData,
+  loadingBookingListData,
+  loadingHistoryData,
+  loadingAddData,
+  loadingUserData,
 }) => (
   <Container>
     <Appbar
@@ -38,7 +44,16 @@ const AppShell = ({
     />
     <ContentWrapper>
       {userId !== undefined && userLevel >= 1 && location.pathname !== '/' ? (
-        <NavBar userLevel={userLevel} currentPath={location.pathname} />
+        <NavBar
+          userLevel={userLevel}
+          currentPath={location.pathname}
+          loadingInventoryData={loadingInventoryData}
+          loadingTransactionData={loadingTransactionData}
+          loadingBookingListData={loadingBookingListData}
+          loadingHistoryData={loadingHistoryData}
+          loadingAddData={loadingAddData}
+          loadingUserData={loadingUserData}
+        />
       ) : (
         undefined
       )}

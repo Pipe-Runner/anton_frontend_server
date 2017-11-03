@@ -1,5 +1,6 @@
 import {
   pink500,
+  indigo500,
   white,
   darkWhite,
   lightWhite,
@@ -10,13 +11,12 @@ import {
   lightBlack,
   fullBlack,
   red500,
-  amber700,
 } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/utils/colorManipulator';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 export const theme = {
-  primary1Color: amber700,
+  primary1Color: indigo500,
   primary2Color: pink500,
   primary3Color: grey200,
   accent1Color: darkWhite,
@@ -28,7 +28,7 @@ export const theme = {
   secondaryAlternateTextColor: lightWhite,
   canvasColor: white,
   borderColor: grey300,
-  disabledColor: fade(darkBlack, 0.3),
+  disabledColor: fade(darkBlack, 0.5),
   shadowColor: fullBlack,
   headerColor: grey200,
   backgroundColor: fade(grey50, 0.25),

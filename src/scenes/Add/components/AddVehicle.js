@@ -9,9 +9,11 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
 const AddVehicle = ({
   onAddVehicle,
+  vehicleNameToAddError,
   onChangeTextField,
   vehicleNameToAdd,
   vehicleFuelTypeToAdd,
+  reset,
 }) => (
   <Container>
     <TextField
@@ -20,6 +22,7 @@ const AddVehicle = ({
       onChange={onChangeTextField('vehicleNameToAdd')}
       style={{ margin: '8px 0px 0px 0px' }}
       floatingLabelText="Vehicle Name"
+      errorText={vehicleNameToAddError}
     />
     <RadioButtonGroup
       onChange={onChangeTextField('vehicleFuelTypeToAdd')}
@@ -35,7 +38,7 @@ const AddVehicle = ({
         hoverColor="#FF4081"
         backgroundColor="#F50057"
         icon={<ResetIcon size={24} color={theme.canvasColor} />}
-        onClick={() => {}}
+        onClick={reset}
       />
       <FlatButton
         style={{ margin: '0px 0px 0px 16px' }}

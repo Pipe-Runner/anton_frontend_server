@@ -75,8 +75,11 @@ export const TitleWrapper = styled.div`
 export const Logo = styled.div`margin: '32px 0px 0px 0px';`;
 
 export const GifContainer = styled.div`
-  position: relative;
-  padding: 16px 16px 0px 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 100%;
   width: 100%;
   overflow: hidden;

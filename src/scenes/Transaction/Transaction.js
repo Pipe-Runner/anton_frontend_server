@@ -22,9 +22,7 @@ class Transaction extends Component {
         <TableWrapper>
           {transactionTableData ? <CustomDataTable tableData={transactionTableData} /> : undefined}
         </TableWrapper>
-        <Wrapper>
-          <SearchBar onSearch={() => {}} />
-        </Wrapper>
+        <Wrapper />
       </Container>
     );
   }

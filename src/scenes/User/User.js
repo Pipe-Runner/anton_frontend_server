@@ -78,12 +78,15 @@ class Inventory extends Component {
   };
 
   onChangeUserStatus = () => {
-    this.props.dispatchChangeUserStatus({
-      userId: this.state.userId,
-      employeeId: this.state.employeeId,
-      userLevel: this.state.userLevel,
-      isWorking: this.state.isWorking,
-    });
+    this.props.dispatchChangeUserStatus(
+      {
+        userId: this.state.userId,
+        employeeId: this.state.employeeId,
+        userLevel: this.state.userLevel,
+        isWorking: this.state.isWorking,
+      },
+      this.props.userId
+    );
   };
 
   onMakeEmployee = () => {
@@ -93,8 +96,6 @@ class Inventory extends Component {
       fullName: this.state.fullName,
     });
   };
-
-  onReset() {}
 
   render() {
     const { userTableData } = this.props;

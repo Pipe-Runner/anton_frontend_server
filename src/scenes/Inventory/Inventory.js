@@ -3,6 +3,7 @@ import SearchBar from './components/SearchBar';
 import AddPartToBillBar from './components/AddPartToBillBar';
 import CustomDataTable from './components/CustomDataTable';
 import { Container, TableWrapper, Wrapper } from './styles.js';
+import validator from 'validator';
 
 class Inventory extends Component {
   constructor(props) {
@@ -64,9 +65,21 @@ class Inventory extends Component {
       isDirty = true;
       customerContactNumberError = 'Contact Number cannot be empty';
     }
+    if (
+      this.state.customerContactNumber !== '' &&
+      (this.state.customerContactNumber.length !== 10 ||
+        !validator.isInt(this.state.customerContactNumber))
+    ) {
+      customerContactNumberError = 'Not A Valid phone number';
+      isDirty = true;
+    }
     if (this.state.customerEmailId === '') {
       isDirty = true;
       customerEmailIdError = 'Contact Email ID cannot be empty';
+    }
+    if (this.state.customerEmailId !== '' && !validator.isEmail(this.state.customerEmailId)) {
+      customerEmailIdError = 'Not a valid Email ID';
+      isDirty = true;
     }
     this.setState({ ...this.state, customerContactNumberError, customerEmailIdError });
 

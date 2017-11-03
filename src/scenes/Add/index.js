@@ -77,7 +77,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(fetchVehicleListFailed());
       });
   },
-  dispatchAddItem: data => {
+  dispatchAddItem: (data, reset) => {
     dispatch(addItem());
     addItemApi(data)
       .then(response => {
@@ -89,6 +89,8 @@ const mapDispatchToProps = dispatch => ({
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
           dispatch(addItemSuccessful());
+          dispatch(openSnackBar('Item Added Successfully'));
+          reset();
         } else {
           dispatch(openSnackBar(data.error));
           dispatch(addItemFailed());
@@ -99,7 +101,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(addItemFailed());
       });
   },
-  dispatchAddSupplier: data => {
+  dispatchAddSupplier: (data, reset) => {
     dispatch(addSupplier());
     addSupplierApi(data)
       .then(response => {
@@ -111,6 +113,8 @@ const mapDispatchToProps = dispatch => ({
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
           dispatch(addSupplierSuccessful(data.supplier));
+          dispatch(openSnackBar('Supplier Added Successfully'));
+          reset();
         } else {
           dispatch(openSnackBar(data.error));
           dispatch(addSupplierFailed());
@@ -121,7 +125,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(addSupplierFailed());
       });
   },
-  dispatchAddVehicle: data => {
+  dispatchAddVehicle: (data, reset) => {
     dispatch(addVehicle());
     addVehicleApi(data)
       .then(response => {
@@ -133,6 +137,8 @@ const mapDispatchToProps = dispatch => ({
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
           dispatch(addVehicleSuccessful(data.vehicle));
+          dispatch(openSnackBar('Vehicle Added Successfully'));
+          reset();
         } else {
           dispatch(openSnackBar(data.error));
           dispatch(addVehicleFailed());

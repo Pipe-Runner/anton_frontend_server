@@ -11,11 +11,17 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
 const AddItem = ({
   partType,
+  partTypeError,
   modelNumber,
+  modelNumberError,
   cost,
+  costError,
   supplierName,
+  supplierNameError,
   supplierContactNumber,
+  supplierContactNumberError,
   vehicleName,
+  vehicleNameError,
   fuelType,
   storedAt,
   onChangeTextField,
@@ -24,6 +30,7 @@ const AddItem = ({
   handleUpdateAutoComplete,
   supplierNameList,
   vehicleNameList,
+  reset,
 }) => (
   <Container style={{ flex: 1 }}>
     <TextField
@@ -32,6 +39,7 @@ const AddItem = ({
       floatingLabelText="Parts type"
       value={partType}
       onChange={onChangeTextField('partType')}
+      errorText={partTypeError}
     />
     <TextField
       fullWidth
@@ -39,6 +47,7 @@ const AddItem = ({
       floatingLabelText="Model Number"
       value={modelNumber}
       onChange={onChangeTextField('modelNumber')}
+      errorText={modelNumberError}
     />
     <TextField
       fullWidth
@@ -46,17 +55,20 @@ const AddItem = ({
       value={cost}
       floatingLabelText="Cost"
       onChange={onChangeTextField('cost')}
+      errorText={costError}
     />
     <AutoComplete
+      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
       fullWidth
       style={{ margin: '4px 0px 0px 0px' }}
       searchText={supplierName}
       floatingLabelText="Supplier Name"
       onUpdateInput={handleUpdateAutoComplete('supplierName')}
       onNewRequest={handleNewRequestAutoComplete('supplierName')}
-      filter={(searchText, key) => key.indexOf(searchText) !== -1}
+      filter={AutoComplete.fuzzyFilter}
       dataSource={supplierNameList}
       openOnFocus={true}
+      errorText={supplierNameError}
     />
     <TextField
       fullWidth
@@ -64,6 +76,7 @@ const AddItem = ({
       value={supplierContactNumber}
       floatingLabelText="Supplier Contact Number"
       onChange={onChangeTextField('supplierContactNumber')}
+      errorText={supplierContactNumberError}
     />
     <RadioButtonGroup
       onChange={onChangeTextField('storedAt')}
@@ -75,15 +88,17 @@ const AddItem = ({
       <RadioButton style={{ margin: '16px 0px 0px 0px' }} value={'GODOWN'} label="Godown" />
     </RadioButtonGroup>
     <AutoComplete
+      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
       fullWidth
       style={{ margin: '4px 0px 0px 0px' }}
       searchText={vehicleName}
       floatingLabelText="Vehicle Name"
       onUpdateInput={handleUpdateAutoComplete('vehicleName')}
       onNewRequest={handleNewRequestAutoComplete('vehicleName')}
-      filter={(searchText, key) => key.indexOf(searchText) !== -1}
+      filter={AutoComplete.fuzzyFilter}
       dataSource={vehicleNameList}
       openOnFocus={true}
+      errorText={vehicleNameError}
     />
     <RadioButtonGroup
       onChange={onChangeTextField('fuelType')}
@@ -99,7 +114,7 @@ const AddItem = ({
         hoverColor="#FF4081"
         backgroundColor="#F50057"
         icon={<ResetIcon size={24} color={theme.canvasColor} />}
-        onClick={() => {}}
+        onClick={reset}
       />
       <FlatButton
         style={{ margin: '0px 0px 0px 16px' }}

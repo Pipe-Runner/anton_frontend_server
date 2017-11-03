@@ -34,6 +34,9 @@ class Booking extends Component {
   };
 
   onChange = textField => (event, value) => {
+    if (textField === 'date' || textField === 'time') {
+      this.setState({ ...this.state, [textField]: value, isVerified: false });
+    }
     this.setState({ ...this.state, [textField]: value });
   };
 

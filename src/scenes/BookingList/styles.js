@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
   display: flex;
   margin: 8px 0px 0px 16px;
   flex-direction: column;
+  min-width: 320px;
 
   > * + * {
     margin: 16px 0px 0px 0px;

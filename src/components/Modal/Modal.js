@@ -3,6 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { LoginButton, SignupButton } from './components/ActionButtons';
 import { LoginForm, SignupForm } from './components/InputForms';
+import validator from 'validator';
 
 class Modal extends Component {
   constructor(props) {
@@ -37,12 +38,27 @@ class Modal extends Component {
             passwordError = 'Paswword cannot be empty';
             isDirty = true;
           }
+          if (this.state.password !== '' && this.state.password.length < 8) {
+            passwordError = 'Password cannot be less than 8 chatacters';
+            isDirty = true;
+          }
           if (this.state.contactNumber === '') {
             contactNumberError = 'Contact Number cannot be empty';
             isDirty = true;
           }
+          if (
+            this.state.contactNumber !== '' &&
+            (this.state.contactNumber.length !== 10 || !validator.isInt(this.state.contactNumber))
+          ) {
+            contactNumberError = 'Not A Valid phone number';
+            isDirty = true;
+          }
           if (this.state.emailId === '') {
             emailIdError = 'Email ID cannot be empty';
+            isDirty = true;
+          }
+          if (this.state.emailId !== '' && !validator.isEmail(this.state.emailId)) {
+            emailIdError = 'Not a valid Email ID';
             isDirty = true;
           }
           if (!isDirty) {
@@ -69,12 +85,27 @@ class Modal extends Component {
             passwordError = 'Paswword cannot be empty';
             isDirty = true;
           }
+          if (this.state.password !== '' && this.state.password.length < 8) {
+            passwordError = 'Password cannot be less than 8 chatacters';
+            isDirty = true;
+          }
           if (this.state.contactNumber === '') {
             contactNumberError = 'Contact Number cannot be empty';
             isDirty = true;
           }
+          if (
+            this.state.contactNumber !== '' &&
+            (this.state.contactNumber.length !== 10 || !validator.isInt(this.state.contactNumber))
+          ) {
+            contactNumberError = 'Not A Valid phone number';
+            isDirty = true;
+          }
           if (this.state.emailId === '') {
             emailIdError = 'Email ID cannot be empty';
+            isDirty = true;
+          }
+          if (this.state.emailId !== '' && !validator.isEmail(this.state.emailId)) {
+            emailIdError = 'Not a valid Email ID';
             isDirty = true;
           }
           if (!isDirty) {
@@ -94,6 +125,7 @@ class Modal extends Component {
             });
           }
         };
+
       default:
         break;
     }

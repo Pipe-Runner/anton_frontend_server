@@ -18,6 +18,17 @@ import { signupApi, loginApi } from './api.AppShell';
 
 const mapStateToProps = state => ({
   ...state.appshell,
+  loadingInventoryData: state.inventory.fetchingData || state.inventory.addingPartsToBill,
+  loadingTransactionData: state.transaction.fetchingData,
+  loadingBookingListData: state.bookingList.fetchingData || state.bookingList.changingBookingStatus,
+  loadingHistoryData: state.history.fetchingData,
+  loadingAddData:
+    state.add.addingSupplier ||
+    state.add.addingItem ||
+    state.add.addingVehicle ||
+    state.add.fetchingSupplierList ||
+    state.add.fetchingVehicleList,
+  loadingUserData: state.user.fetchingData,
 });
 
 const mapDispatchToProps = dispatch => ({

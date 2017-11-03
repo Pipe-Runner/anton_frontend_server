@@ -10,8 +10,12 @@ const AddSupplier = ({
   onAddSupplier,
   onChangeTextField,
   supplierNameToAdd,
+  supplierNameToAddError,
   supplierContactNumberToAdd,
+  supplierContactNumberToAddError,
   supplierAddressToAdd,
+  supplierAddressToAddError,
+  reset,
 }) => (
   <Container>
     <TextField
@@ -20,6 +24,7 @@ const AddSupplier = ({
       onChange={onChangeTextField('supplierNameToAdd')}
       style={{ margin: '8px 0px 0px 0px' }}
       floatingLabelText="Supplier Name"
+      errorText={supplierNameToAddError}
     />
     <TextField
       fullWidth
@@ -27,6 +32,7 @@ const AddSupplier = ({
       onChange={onChangeTextField('supplierContactNumberToAdd')}
       style={{ margin: '8px 0px 0px 0px' }}
       floatingLabelText="Supplier Contact Number"
+      errorText={supplierContactNumberToAddError}
     />
     <TextField
       fullWidth
@@ -34,13 +40,14 @@ const AddSupplier = ({
       onChange={onChangeTextField('supplierAddressToAdd')}
       style={{ margin: '8px 0px 16px 0px' }}
       floatingLabelText="Supplier Address"
+      errorText={supplierAddressToAddError}
     />
     <ButtonContainer>
       <FlatButton
         hoverColor="#FF4081"
         backgroundColor="#F50057"
         icon={<ResetIcon size={24} color={theme.canvasColor} />}
-        onClick={() => {}}
+        onClick={reset}
       />
       <FlatButton
         style={{ margin: '0px 0px 0px 16px' }}
