@@ -1,71 +1,112 @@
 import React from 'react';
 import { Container } from './styles';
 import TextField from 'material-ui/TextField';
+import AutoComplete from 'material-ui/AutoComplete';
 import FlatButton from 'material-ui/FlatButton';
-import AddItemIcon from 'react-icons/lib/md/shopping-basket';
+import ResetIcon from 'react-icons/lib/fa/ban';
+import AddItemIcon from 'react-icons/lib/md/move-to-inbox';
 import { theme } from '../../../utils/theme';
 import { ButtonContainer, Spacer } from './styles';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
 const AddItem = ({
-  partsType,
+  partType,
   modelNumber,
   cost,
   supplierName,
-  storedAt,
-  vehicalType,
+  supplierContactNumber,
+  vehicleName,
   fuelType,
-  onTextFieldChange = () => {},
-  onCheckOut,
+  storedAt,
+  onChangeTextField,
+  onAddItem,
+  handleNewRequestAutoComplete,
+  handleUpdateAutoComplete,
+  supplierNameList,
+  vehicleNameList,
 }) => (
-  <Container>
+  <Container style={{ flex: 1 }}>
     <TextField
       fullWidth
-      style={{ margin: '8px 0px 16px 0px' }}
+      style={{ margin: '4px 0px 0px 0px' }}
       floatingLabelText="Parts type"
-      value={partsType}
+      value={partType}
+      onChange={onChangeTextField('partType')}
     />
     <TextField
       fullWidth
-      style={{ margin: '8px 0px 16px 0px' }}
+      style={{ margin: '4px 0px 0px 0px' }}
       floatingLabelText="Model Number"
       value={modelNumber}
+      onChange={onChangeTextField('modelNumber')}
     />
     <TextField
       fullWidth
-      style={{ margin: '8px 0px 16px 0px' }}
+      style={{ margin: '4px 0px 0px 0px' }}
       value={cost}
       floatingLabelText="Cost"
+      onChange={onChangeTextField('cost')}
     />
-    <TextField
+    <AutoComplete
       fullWidth
-      style={{ margin: '8px 0px 16px 0px' }}
-      value={supplierName}
+      style={{ margin: '4px 0px 0px 0px' }}
+      searchText={supplierName}
       floatingLabelText="Supplier Name"
+      onUpdateInput={handleUpdateAutoComplete('supplierName')}
+      onNewRequest={handleNewRequestAutoComplete('supplierName')}
+      filter={(searchText, key) => key.indexOf(searchText) !== -1}
+      dataSource={supplierNameList}
+      openOnFocus={true}
     />
     <TextField
       fullWidth
-      style={{ margin: '8px 0px 16px 0px' }}
-      value={storedAt}
-      floatingLabelText="Stored At"
+      style={{ margin: '4px 0px 0px 0px' }}
+      value={supplierContactNumber}
+      floatingLabelText="Supplier Contact Number"
+      onChange={onChangeTextField('supplierContactNumber')}
     />
-    <TextField
+    <RadioButtonGroup
+      onChange={onChangeTextField('storedAt')}
+      valueSelected={storedAt}
+      name="storedAt"
+      style={{ margin: '8px 0px 0px 0px' }}
+    >
+      <RadioButton style={{ margin: '8px 0px 8px 0px' }} value={'SHOP'} label="Shop" />
+      <RadioButton style={{ margin: '16px 0px 0px 0px' }} value={'GODOWN'} label="Godown" />
+    </RadioButtonGroup>
+    <AutoComplete
       fullWidth
-      style={{ margin: '8px 0px 16px 0px' }}
-      value={vehicalType}
-      floatingLabelText="Vehical Type"
+      style={{ margin: '4px 0px 0px 0px' }}
+      searchText={vehicleName}
+      floatingLabelText="Vehicle Name"
+      onUpdateInput={handleUpdateAutoComplete('vehicleName')}
+      onNewRequest={handleNewRequestAutoComplete('vehicleName')}
+      filter={(searchText, key) => key.indexOf(searchText) !== -1}
+      dataSource={vehicleNameList}
+      openOnFocus={true}
     />
-    <TextField
-      fullWidth
-      style={{ margin: '8px 0px 16px 0px' }}
-      value={fuelType}
-      floatingLabelText="Fuel Type"
-    />
+    <RadioButtonGroup
+      onChange={onChangeTextField('fuelType')}
+      valueSelected={fuelType}
+      name="fuelType"
+      style={{ margin: '8px 0px 0px 0px' }}
+    >
+      <RadioButton style={{ margin: '8px 0px 8px 0px' }} value={'PETROL'} label="Petrol" />
+      <RadioButton style={{ margin: '16px 0px 8px 0px' }} value={'DIESEL'} label="Diesel" />
+    </RadioButtonGroup>
     <ButtonContainer>
       <FlatButton
+        hoverColor="#FF4081"
+        backgroundColor="#F50057"
+        icon={<ResetIcon size={24} color={theme.canvasColor} />}
+        onClick={() => {}}
+      />
+      <FlatButton
+        style={{ margin: '0px 0px 0px 16px' }}
         hoverColor="#00E676"
-        backgroundColor="#00E676"
+        backgroundColor="#00C853"
         icon={<AddItemIcon size={24} color={theme.canvasColor} />}
-        onClick={onCheckOut}
+        onClick={onAddItem}
       />
     </ButtonContainer>
   </Container>
