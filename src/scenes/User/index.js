@@ -25,6 +25,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatchFetchUser: () => {
+    dispatch(openSnackBar('Fetching data...'));
     dispatch(fetchUser());
     fetchUserApi()
       .then(response => {
@@ -35,7 +36,6 @@ const mapDispatchToProps = dispatch => ({
       })
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
-          dispatch(openSnackBar('Fetch Operation Successful'));
           dispatch(fetchUserSuccessful(data.userList));
         } else {
           dispatch(openSnackBar(data.error));
@@ -47,6 +47,7 @@ const mapDispatchToProps = dispatch => ({
       });
   },
   dispatchMakeEmployee: data => {
+    dispatch(openSnackBar('Please wait...'));
     dispatch(makeEmployee());
     makeEmployeeApi(data)
       .then(response => {
@@ -69,6 +70,7 @@ const mapDispatchToProps = dispatch => ({
       });
   },
   dispatchChangeUserStatus: (data, userId) => {
+    dispatch(openSnackBar('Please wait...'));
     const userIdChanged = data.userId;
     dispatch(changeUserStatus());
     changeUserStatusApi(data)

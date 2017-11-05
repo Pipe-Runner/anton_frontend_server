@@ -22,6 +22,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatchFetchInventory: () => {
+    dispatch(openSnackBar('Fetching data...'));
     dispatch(fetchInventory());
     fetchInventoryApi()
       .then(response => {
@@ -32,7 +33,6 @@ const mapDispatchToProps = dispatch => ({
       })
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
-          dispatch(openSnackBar('Fetch Operation Successful'));
           dispatch(fetchInventorySuccessful(data.parts));
         } else {
           dispatch(openSnackBar(data.error));
@@ -53,6 +53,7 @@ const mapDispatchToProps = dispatch => ({
     reset
   ) => {
     const data = { employeeId, cart, customerEmailId, customerContactNumber, amount };
+    dispatch(openSnackBar('Processing transaction...'));
     dispatch(addPartsToBill());
     addPartsToBillApi(data)
       .then(response => {

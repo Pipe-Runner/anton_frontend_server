@@ -23,12 +23,12 @@ const CustomDataTabel = ({ tableData }) => (
         </TableHeaderColumn>
       </TableRow>
       <TableRow>
-        <TableHeaderColumn>Transaction ID</TableHeaderColumn>
-        <TableHeaderColumn>Payment Method</TableHeaderColumn>
+        <TableHeaderColumn>ID</TableHeaderColumn>
+        <TableHeaderColumn>Method</TableHeaderColumn>
         <TableHeaderColumn>Amount</TableHeaderColumn>
-        <TableHeaderColumn>Transaction Type</TableHeaderColumn>
+        <TableHeaderColumn>Type</TableHeaderColumn>
         <TableHeaderColumn>Name</TableHeaderColumn>
-        <TableHeaderColumn>Contact Number</TableHeaderColumn>
+        <TableHeaderColumn>Phone</TableHeaderColumn>
         <TableHeaderColumn>Date</TableHeaderColumn>
         <TableHeaderColumn>Time</TableHeaderColumn>
       </TableRow>
@@ -43,7 +43,7 @@ const CustomDataTabel = ({ tableData }) => (
           <TableRowColumn>{row.cardOwnerName}</TableRowColumn>
           <TableRowColumn>{row.contactNumberOnCard}</TableRowColumn>
           <TableRowColumn>{moment(row.date).format('DD-MM-YY')}</TableRowColumn>
-          <TableRowColumn>{row.time}</TableRowColumn>
+          <TableRowColumn>{moment(row.time, 'HH:mm:ss').format('HH:mm a')}</TableRowColumn>
         </TableRow>
       ))}
     </TableBody>

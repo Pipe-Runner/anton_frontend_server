@@ -19,6 +19,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatchFetchPendingBooking: () => {
+    dispatch(openSnackBar('Fetching data...'));
     dispatch(fetchPendingBooking());
     fetchPendingBookingApi()
       .then(response => {
@@ -29,7 +30,6 @@ const mapDispatchToProps = dispatch => ({
       })
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
-          dispatch(openSnackBar('Fetch Operation Successful'));
           dispatch(fetchPendingBookingSuccessful(data.booking));
         } else {
           dispatch(openSnackBar(data.error));
@@ -42,7 +42,7 @@ const mapDispatchToProps = dispatch => ({
       });
   },
   dispatchChangeBookingStatus: data => {
-    console.log(data);
+    dispatch(openSnackBar('Please wait...'));
     dispatch(changeBookingStatus());
     changeBookingStatusApi(data)
       .then(response => {

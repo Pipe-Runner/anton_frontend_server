@@ -36,7 +36,7 @@ class Inventory extends Component {
   };
 
   onRowSelection = selectedElements => {
-    if (selectedElements.length > 10) {
+    if (selectedElements.length > 5) {
       this.props.dispatchCartFullError();
     } else {
       let cart = [];

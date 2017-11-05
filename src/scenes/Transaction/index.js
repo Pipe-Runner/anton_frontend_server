@@ -18,6 +18,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatchTransactionInventory: () => {
+    dispatch(openSnackBar('Fetching data...'));
     dispatch(fetchTransaction());
     fetchTransactionApi()
       .then(response => {
@@ -28,7 +29,6 @@ const mapDispatchToProps = dispatch => ({
       })
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
-          dispatch(openSnackBar('successful Data Fetch!'));
           dispatch(fetchTransactionSuccessful(data.transaction));
         } else {
           dispatch(openSnackBar(data.error));

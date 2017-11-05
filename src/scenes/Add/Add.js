@@ -225,7 +225,7 @@ class Add extends Component {
     if (
       this.state.supplierContactNumberToAdd !== '' &&
       (this.state.supplierContactNumberToAdd.length !== 10 ||
-        validator.isInt(this.state.supplierContactNumberToAdd))
+        !validator.isInt(this.state.supplierContactNumberToAdd))
     ) {
       supplierContactNumberToAddError = 'Not a valid phone number';
       isDirty = true;
@@ -307,7 +307,7 @@ class Add extends Component {
           fuelType: 'PETROL',
           supplierContactNumber: '',
           supplierName: '',
-          storedAt: '',
+          storedAt: 'SHOP',
         });
         break;
 

@@ -94,6 +94,7 @@ class Inventory extends Component {
       userId: this.state.userId,
       contactNumber: this.state.contactNumber,
       fullName: this.state.fullName,
+      userLevel: this.state.userLevel,
     });
   };
 
