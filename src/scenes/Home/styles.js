@@ -5,35 +5,24 @@ import promotionbackground from '../../images/background.gif';
 import cardbackground from '../../images/card.jpg';
 
 export const Container = styled.div`
+  position: relative;
   padding: 16px 16px 0px 16px;
   background-image: url(${homebackground});
   display: flex;
   height: 100%;
   width: 100%;
   background-size: cover;
-  background-position: top;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0px;
-  }
+  background-position: 80%;
 
   & > * {
-    position: relative;
     z-index: 2px;
   }
 `;
 
 export const FabContainer = styled.div`
   position: absolute;
-  margin: 0px 24px 24px 0px;
-  bottom: 0px;
-  right: 0px;
+  bottom: 24px;
+  right: 24px;
 `;
 
 export const PromotionContainer = styled.div`
@@ -49,6 +38,11 @@ export const PromotionContainer = styled.div`
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 45px, rgba(0, 0, 0, 0.22) 0px 10px 18px;
   border-radius: 8px;
+
+  @media (max-width: 1300px) {
+    width: 600px;
+    height: 300px;
+  }
 
   &::before {
     content: '';
@@ -70,6 +64,10 @@ export const TitleWrapper = styled.div`
   color: #f50057;
   font-family: 'Nosifer', cursive;
   z-index: 1;
+
+  @media (max-width: 1300px) {
+    font-size: 42px;
+  }
 `;
 
 export const Logo = styled.div`margin: '32px 0px 0px 0px';`;

@@ -52,17 +52,6 @@ const Feedback = () => (
             secondaryTextLines={2}
           />
           <Divider inset={true} />
-          <ListItem
-            leftAvatar={<Avatar src={user4Image} />}
-            primaryText="How was your experience?"
-            secondaryText={
-              <p>
-                <span style={{ color: darkBlack }}>Aakash Mallik</span> -- You see, things could be
-                better..
-              </p>
-            }
-            secondaryTextLines={2}
-          />
         </List>
       </FeedbackWrapper>
     </BounceInUp>

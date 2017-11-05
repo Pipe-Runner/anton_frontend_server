@@ -70,6 +70,9 @@ const mapDispatchToProps = dispatch => ({
         dispatch(getBookingFailed());
       });
   },
+  dispatchError: error => {
+    dispatch(openSnackBar(error));
+  },
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

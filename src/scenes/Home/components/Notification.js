@@ -10,7 +10,7 @@ const Notification = () => (
   <NotificationContainer>
     <NotificationWrapper>
       <NotificationHeading>Admin</NotificationHeading>
-      <NotificationBody>This is to notify that you are fucked up!!</NotificationBody>
+      <NotificationBody>20% OFF on all car wash this month!!</NotificationBody>
     </NotificationWrapper>
   </NotificationContainer>
 );

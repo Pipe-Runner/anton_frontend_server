@@ -13,7 +13,9 @@ const BookingForm = ({
   emailId,
   contactNumber,
   date,
+  dateError,
   time,
+  timeError,
   onChange,
   handlePrev,
   handleNext,
@@ -41,6 +43,9 @@ const BookingForm = ({
       onChange={onChange('date')}
       mode="landscape"
       fullWidth={true}
+      errorText={dateError}
+      minDate={new Date()}
+      maxDate={new Date(+new Date() + 12096e5)}
     />
     <TimePicker
       floatingLabelText="Booking Time"
@@ -48,6 +53,7 @@ const BookingForm = ({
       onChange={onChange('time')}
       fullWidth={true}
       minutesStep={30}
+      errorText={timeError}
     />
     <Spacer />
     <ButtonContainer>

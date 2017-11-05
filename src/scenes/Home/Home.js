@@ -22,18 +22,23 @@ import Notification from './components/Notification';
 import Status from './components/Status';
 import Feedback from './components/Feedback';
 
-const Home = ({
-  bookingData = [],
-  contactNumber,
-  userId,
-  emailId,
-  userLevel,
-  dispatchGetBooking,
-  bookingCount,
-  transactionCount,
-  partCount,
-  dispatchFetchSoldCount,
-}) =>
+const Home = (
+  {
+    bookingData,
+    contactNumber,
+    userId,
+    emailId,
+    userLevel,
+    dispatchGetBooking,
+    bookingCount,
+    transactionCount,
+    partCount,
+    dispatchFetchSoldCount,
+    dispatchError,
+    history,
+  },
+  context
+) =>
   userId !== undefined && userLevel < 1 ? (
     <Container>
       <Order
@@ -45,11 +50,17 @@ const Home = ({
       <Service />
       <Notification />
       <FabContainer>
-        <NavLink to="/booking">
-          <FloatingActionButton backgroundColor="#9C27B0">
-            <RepairIcon size={24} />
-          </FloatingActionButton>
-        </NavLink>
+        <FloatingActionButton
+          onClick={
+            bookingData && bookingData.length >= 2
+              ? () => dispatchError('Your Booking queue is full !')
+              : () => history.push('/booking')
+          }
+          disabled={bookingData ? false : true}
+          backgroundColor="#9C27B0"
+        >
+          <RepairIcon size={24} />
+        </FloatingActionButton>
       </FabContainer>
     </Container>
   ) : (
@@ -58,7 +69,7 @@ const Home = ({
         <TitleWrapper>GUPTA MOTORSHOP</TitleWrapper>
         <Swing iterationCount="infinite" duration="2.0s" delay="3.5s">
           <Logo>
-            <CompanyIcon size={78} color="#673AB7" />
+            <CompanyIcon size={window.innerWidth < 1300 ? 60 : 78} color="#673AB7" />
           </Logo>
         </Swing>
       </PromotionContainer>

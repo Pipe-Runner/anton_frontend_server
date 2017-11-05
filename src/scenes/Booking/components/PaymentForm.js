@@ -10,15 +10,34 @@ const PaymentForm = ({
   submitData,
   handlePrev,
   cvv,
+  cvvError,
   cardOwner,
+  cardOwnerError,
   expiryDate,
+  expiryDateError,
   bankName,
+  bankNameError,
 }) => (
   <FormContainer>
-    <TextField onChange={onChange('cardOwner')} hintText="Card Owner" fullWidth={true} />
-    <TextField onChange={onChange('cvv')} hintText="CVV" fullWidth={true} />
-    <TextField onChange={onChange('expiryDate')} hintText="Expiry Date on Card" fullWidth={true} />
-    <TextField onChange={onChange('bankName')} hintText="Bank Name" fullWidth={true} />
+    <TextField
+      onChange={onChange('cardOwner')}
+      hintText="Card Owner"
+      fullWidth={true}
+      errorText={cardOwnerError}
+    />
+    <TextField onChange={onChange('cvv')} hintText="CVV" fullWidth={true} errorText={cvvError} />
+    <TextField
+      onChange={onChange('expiryDate')}
+      hintText="Expiry Date on Card (MM/YY)"
+      fullWidth={true}
+      errorText={expiryDateError}
+    />
+    <TextField
+      onChange={onChange('bankName')}
+      hintText="Bank Name"
+      fullWidth={true}
+      errorText={bankNameError}
+    />
     <PaymentInfoWrapper>Amount Payable: &#x20b9; 1500</PaymentInfoWrapper>
     <Spacer />
     <ButtonContainer>

@@ -54,9 +54,11 @@ const mapDispatchToProps = dispatch => ({
       .then(data => {
         if (data.code === '200' && data.error === 'none') {
           dispatch(fetchPendingBookingSuccessful(data.booking));
+          dispatch(changeBookingStatusSuccessful());
         } else {
           dispatch(openSnackBar(data.error));
           dispatch(fetchPendingBookingFailed());
+          dispatch(changeBookingStatusFailed());
         }
       })
       .catch(error => {

@@ -1,6 +1,13 @@
 import React from 'react';
-import { ServiceContainer } from './styles.js';
+import { ServiceContainer, MapContainer, MapWrapper, MapTextWrapper } from './styles.js';
 
-const Service = () => <ServiceContainer>di</ServiceContainer>;
+const Service = () => (
+  <ServiceContainer>
+    <MapContainer>
+      <MapTextWrapper>One Stop Solution</MapTextWrapper>
+      <MapWrapper />
+    </MapContainer>
+  </ServiceContainer>
+);
 
 export default Service;

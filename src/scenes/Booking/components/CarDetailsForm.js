@@ -5,24 +5,44 @@ import AcceptIcon from 'react-icons/lib/fa/play';
 import RejectIcon from 'react-icons/lib/ti/cancel';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import { FormContainer, Spacer, ButtonContainer } from './styles';
+import AutoComplete from 'material-ui/AutoComplete';
 
-const BookingForm = ({ carName, numberPlate, fuelType, onChange, handlePrev, handleNext }) => (
+const BookingForm = ({
+  carName,
+  carNameError,
+  numberPlate,
+  numberPlateError,
+  fuelType,
+  onChange,
+  handlePrev,
+  handleNext,
+  handleNewRequestAutoComplete,
+  handleUpdateAutoComplete,
+  vehicleNameList,
+}) => (
   <FormContainer>
-    <TextField
-      value={carName}
-      onChange={onChange('carName')}
-      hintText="Car Name"
-      fullWidth={true}
+    <AutoComplete
+      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+      fullWidth
+      searchText={carName}
+      floatingLabelText="Car Name"
+      onUpdateInput={handleUpdateAutoComplete('carName')}
+      onNewRequest={handleNewRequestAutoComplete('carName')}
+      filter={AutoComplete.fuzzyFilter}
+      dataSource={vehicleNameList}
+      openOnFocus={true}
+      errorText={carNameError}
     />
     <TextField
       value={numberPlate}
       onChange={onChange('numberPlate')}
       hintText="Number Plate"
       fullWidth={true}
+      errorText={numberPlateError}
     />
     <RadioButtonGroup name="fuelType" defaultSelected="PETROL" onChange={onChange('fuelType')}>
       <RadioButton value="PETROL" label="Petrol" />
-      <RadioButton value="DESIEL" label="Desiel" style={{ margin: '16px 0px 0px 0px' }} />
+      <RadioButton value="DIESEL" label="Diesel" style={{ margin: '16px 0px 0px 0px' }} />
     </RadioButtonGroup>
     <Spacer />
     <ButtonContainer>

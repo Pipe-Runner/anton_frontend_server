@@ -44,7 +44,7 @@ const CustomDataTabel = ({ tableData, onRowSelection, isSelected }) => (
           <TableRowColumn>{row.userId}</TableRowColumn>
           <TableRowColumn>{row.contactNumber}</TableRowColumn>
           <TableRowColumn>{moment(row.date).format('DD-MM-YYYY')}</TableRowColumn>
-          <TableRowColumn>{moment(row.startTime, 'HH:MM:SS').format('hh:MM a')}</TableRowColumn>
+          <TableRowColumn>{moment(row.startTime, 'HH:mm:ss').format('hh:ss a')}</TableRowColumn>
           <TableRowColumn>{row.numberPlate}</TableRowColumn>
           <TableRowColumn>
             {row.isDone ? (

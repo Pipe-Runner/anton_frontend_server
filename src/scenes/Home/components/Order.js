@@ -21,8 +21,7 @@ class Order extends Component {
   }
 
   render() {
-    const { bookingData } = this.props;
-    console.log(bookingData);
+    const bookingData = this.props.bookingData ? this.props.bookingData : [];
 
     return (
       <OrdersContainer>

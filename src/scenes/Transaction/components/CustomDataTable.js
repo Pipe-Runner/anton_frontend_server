@@ -7,6 +7,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import moment from 'moment';
 
 const CustomDataTabel = ({ tableData }) => (
   <Table
@@ -41,7 +42,7 @@ const CustomDataTabel = ({ tableData }) => (
           <TableRowColumn>{row.transactionType}</TableRowColumn>
           <TableRowColumn>{row.cardOwnerName}</TableRowColumn>
           <TableRowColumn>{row.contactNumberOnCard}</TableRowColumn>
-          <TableRowColumn>{row.date}</TableRowColumn>
+          <TableRowColumn>{moment(row.date).format('DD-MM-YY')}</TableRowColumn>
           <TableRowColumn>{row.time}</TableRowColumn>
         </TableRow>
       ))}

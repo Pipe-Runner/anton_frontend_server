@@ -12,12 +12,19 @@ import {
 } from './action';
 import { openSnackBar } from '../../components/AppShell/action';
 import { verifybookingdata1Api, submitBookingDataApi } from './api.Booking';
+import { fetchVehicleListApi } from '../Add/api.Add.js';
+import {
+  fetchVehicleList,
+  fetchVehicleListSuccessful,
+  fetchVehicleListFailed,
+} from '../Add/action';
 
 const mapStateToProps = state => ({
   ...state.booking,
   userId: state.appshell.userId,
   emailId: state.appshell.emailId,
   contactNumber: state.appshell.contactNumber,
+  vehicleList: state.add.vehicleList,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -85,6 +92,28 @@ const mapDispatchToProps = dispatch => ({
         console.log(error);
         dispatch(openSnackBar('Error in fetch operation!'));
         dispatch(submitDataFailed());
+      });
+  },
+  dispatchFetchVehicleList: () => {
+    dispatch(fetchVehicleList());
+    fetchVehicleListApi()
+      .then(response => {
+        if (response.ok === true) {
+          return response.json();
+        }
+        throw new Error('Error in network');
+      })
+      .then(data => {
+        if (data.code === '200' && data.error === 'none') {
+          dispatch(fetchVehicleListSuccessful(data.vehicle));
+        } else {
+          dispatch(openSnackBar(data.error));
+          dispatch(fetchVehicleListFailed());
+        }
+      })
+      .catch(error => {
+        dispatch(openSnackBar('Error in fetch operation'));
+        dispatch(fetchVehicleListFailed());
       });
   },
 });
