@@ -22,10 +22,10 @@ class BookingList extends Component {
   }
 
   onTextFieldChange = textField => (event, value) => {
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       [textField]: value,
-    });
+    }));
   };
 
   isSelected = index => {
@@ -35,25 +35,25 @@ class BookingList extends Component {
   onRowSelection = selectedElements => {
     const selectedItem = this.props.bookingTableData[selectedElements[0]];
     if (selectedItem !== undefined) {
-      this.setState({
-        ...this.state,
+      this.setState(prevState => ({
+        ...prevState,
         selected: selectedElements,
         customerFullName: selectedItem.fullName,
         customerContactNumber: selectedItem.contactNumber,
         customerEmailId: selectedItem.emailId,
         numberPlate: selectedItem.numberPlate,
         isDone: selectedItem.isDone,
-      });
+      }));
     } else {
-      this.setState({
-        ...this.state,
+      this.setState(prevState => ({
+        ...prevState,
         selected: [],
         customerFullName: '',
         customerContactNumber: '',
         customerEmailId: '',
         numberPlate: '',
         isDone: '',
-      });
+      }));
     }
   };
 
@@ -85,6 +85,7 @@ class BookingList extends Component {
 
   render() {
     const { bookingTableData, employeeId } = this.props;
+    console.log(this.props.bookingTableData);
     const {
       customerFullName,
       customerEmailId,

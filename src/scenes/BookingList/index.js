@@ -64,6 +64,7 @@ const mapDispatchToProps = dispatch => ({
       .catch(error => {
         console.log(error);
         dispatch(openSnackBar('Problem in Changing Status!'));
+        dispatch(changeBookingStatusFailed());
       });
   },
 });

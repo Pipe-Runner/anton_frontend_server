@@ -40,7 +40,6 @@ const reducer = (state = defaultState, action) => {
       return {
         ...state,
         changingBookingStatus: false,
-        bookingTableData: action.payload,
       };
 
     case CHANGE_BOOKING_STATUS_FAILED:
