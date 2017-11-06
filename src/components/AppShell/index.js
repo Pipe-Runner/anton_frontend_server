@@ -34,7 +34,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatchLogin: (emailId, password, contactNumber) => {
     dispatch(login());
-    dispatch(openSnackBar(`Setting things up, Please wait!`));
+    dispatch(openSnackBar(`Verifying, Please wait!`));
     const data = { emailId, password, contactNumber };
     console.log(data);
     loginApi(data)
@@ -72,7 +72,7 @@ const mapDispatchToProps = dispatch => ({
   },
   dispatchSignup: (fullName, emailId, password, contactNumber) => {
     dispatch(signup());
-    dispatch(openSnackBar(`Verifying, Please wait!`));
+    dispatch(openSnackBar(`Setting things up, Please wait!`));
     const data = { fullName, emailId, password, contactNumber };
     signupApi(data)
       .then(response => {
