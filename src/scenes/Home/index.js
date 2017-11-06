@@ -34,6 +34,7 @@ const mapDispatchToProps = dispatch => ({
         throw new Error('Error in network');
       })
       .then(data => {
+        console.log(data.booking);
         if (data.code === '200' && data.error === 'none') {
           dispatch(getBookingSuccessful(data.booking));
         } else {

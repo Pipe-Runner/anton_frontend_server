@@ -34,7 +34,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatchLogin: (emailId, password, contactNumber) => {
     dispatch(login());
-    dispatch(openSnackBar(`Verifying, Please wait!`));
+    dispatch(openSnackBar(`Setting things up, Please wait!`));
     const data = { emailId, password, contactNumber };
     console.log(data);
     loginApi(data)
@@ -47,7 +47,7 @@ const mapDispatchToProps = dispatch => ({
       .then(data => {
         console.log(data);
         if (data.code === '200' && data.error === 'none') {
-          dispatch(openSnackBar(`Wecome ${data.fullName}!`));
+          dispatch(openSnackBar(`Welcome ${data.fullName}!`));
           dispatch(hideModal());
           console.log(data);
           dispatch(

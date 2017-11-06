@@ -78,6 +78,7 @@ const mapDispatchToProps = dispatch => ({
       });
   },
   dispatchAddItem: (data, reset) => {
+    dispatch(openSnackBar('Adding new item...'));
     dispatch(addItem());
     addItemApi(data)
       .then(response => {
@@ -102,6 +103,7 @@ const mapDispatchToProps = dispatch => ({
       });
   },
   dispatchAddSupplier: (data, reset) => {
+    dispatch(openSnackBar('Adding new supplier...'));
     dispatch(addSupplier());
     addSupplierApi(data)
       .then(response => {
@@ -126,6 +128,7 @@ const mapDispatchToProps = dispatch => ({
       });
   },
   dispatchAddVehicle: (data, reset) => {
+    dispatch(openSnackBar('Adding new vehicle...'));
     dispatch(addVehicle());
     addVehicleApi(data)
       .then(response => {

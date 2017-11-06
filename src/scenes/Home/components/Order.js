@@ -31,7 +31,7 @@ class Order extends Component {
               <IdData>{item.id}</IdData>
             </IdWrapper>
             <MomentWrapper>
-              <MomentData>{moment(item.date, 'YYYY-MM-DD').format('DD/MM/YY')}</MomentData>
+              <MomentData>{moment(item.date).format('DD/MM/YY')}</MomentData>
               <MomentData>{moment(item.startTime, 'HH:mm').format('hh:mm a')}</MomentData>
             </MomentWrapper>
           </OrderWrapper>

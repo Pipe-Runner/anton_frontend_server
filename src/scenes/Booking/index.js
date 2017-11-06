@@ -32,6 +32,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(resetIsverified());
   },
   dispatchVefifyBookingData: (stage, data) => {
+    dispatch(openSnackBar('Verifying time slot!'));
     dispatch(verifyData());
     switch (stage) {
       case 0:
@@ -69,6 +70,7 @@ const mapDispatchToProps = dispatch => ({
     }
   },
   dispatchSubmitData: (data, onFinish) => {
+    dispatch(openSnackBar('Making a booking for you!'));
     submitData();
     submitBookingDataApi(data)
       .then(response => {
