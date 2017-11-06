@@ -57,6 +57,34 @@ const PaymentForm = ({
           submitData();
         }}
       />
+
+      {/* Remove during deployment */}
+      <span
+        className="pm-button"
+        id="CFA0CDB05D426E5966442EED09C73F4C"
+        onClick={() => {
+          window.PUM.setData('1500', '123', 'Nothing');
+          window.PUM.pay();
+        }}
+      >
+        <span style={{ margin: '16px 0px 0px 16px' }} className="state active">
+          <input
+            type="image"
+            src="https://file.payumoney.com/images/payby_payumoney/new_buttons/21.png"
+            width="88"
+            height="36"
+          />
+        </span>
+        <span className="state clicked" style={{ display: 'none' }}>
+          <input
+            type="image"
+            src="https://file.payumoney.com/images/payby_payumoney/new_buttons/submitted/21.png"
+            width="88"
+            height="36"
+          />
+        </span>
+      </span>
+      {/*  */}
     </ButtonContainer>
   </FormContainer>
 );
